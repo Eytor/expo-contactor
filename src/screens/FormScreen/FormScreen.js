@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text,
     TextInput,
+    TouchableOpacity,
+    Text,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import defaultStyles from '../../resources/defaultStyles';
+import styles from './FormScreen.styles';
 
 class Form extends Component {
     constructor(probs) {
@@ -26,30 +28,41 @@ class Form extends Component {
         });
     }
 
+
     render() {
+        const { submit } = this.props.navigation.state.params;
         return (
             <View style={defaultStyles.container}>
                 <View>
-                    <Text>Name</Text>
                     <TextInput
+                        style={[defaultStyles.input, styles.input]}
+                        placeholder="Name"
                         value={this.state.name}
                         onChangeText={(name) => this.setState({ name })}
                     />
                 </View>
                 <View>
-                    <Text>Phone Number</Text>
                     <TextInput
+                        placeholder="Phone number"
+                        style={[defaultStyles.input, styles.input]}
                         value={this.state.phonenumber}
                         onChangeText={(phonenumber) => this.setState({ phonenumber })}
                     />
                 </View>
                 <View>
-                    <Text>Photo</Text>
                     <TextInput
+                        placeholder="Photo"
+                        style={[defaultStyles.input, styles.input]}
                         value={this.state.photo}
                         onChangeText={(photo) => this.setState({ photo })}
                     />
                 </View>
+                <TouchableOpacity
+                    // style={styles.addContactButton}
+                    onPress={() => { submit(this.name, this.phonenumber, this.photo); }}
+                >
+                    <Text style={styles.btnText}>Add item!</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -59,6 +72,7 @@ Form.propTypes = {
     name: PropTypes.string,
     phonenumber: PropTypes.number,
     photo: PropTypes.string,
+    navigation: PropTypes.object.isRequired,
 };
 
 Form.defaultProps = {

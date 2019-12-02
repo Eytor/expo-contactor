@@ -17,6 +17,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 class ContactScreen extends Component {
     constructor(props) {
         super(props);
+        this.addContact = this.addContact.bind(this)
         this.state = {
             contactList: [],
             filteredContactList: [],
@@ -89,7 +90,7 @@ class ContactScreen extends Component {
                         keyExtractor={this._keyExtractor}
                         renderItem={({ item, index }) => {
                             return (
-                                <TouchableOpacity style={styles.flatlistItem} onPress={() => this.props.navigation.navigate('ContactInfo', {name: item.name, photo: item.photo, phoneNumber: item.phoneNumber})}>
+                                <TouchableOpacity style={styles.flatlistItem} onPress={() => this.props.navigation.navigate('ContactInfo', {name: item.name, photo: item.photo, phoneNumber: item.phoneNumber, submit: this.addContact })}>
                                     <Image
                                         style={styles.image}
                                         source={{uri : item.photo}}
