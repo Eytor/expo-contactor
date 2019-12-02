@@ -3,7 +3,6 @@ import {
     FlatList,
     View,
     Text,
-    Image,
 } from 'react-native';
 import FilterElement from '../../componenents/FilterElement/FilterElement';
 import styles from './ContactScreen.styles';
@@ -22,9 +21,6 @@ class ContactScreen extends Component {
         // Má setja þetta í sér element
         const contacts = filteredContactList.map((element) => (
             <View>
-                <Image
-                    source={require('@expo/snack-static/react-native-logo.png')}
-                />
                 <Text>{element.name}</Text>
             </View>
         ));
