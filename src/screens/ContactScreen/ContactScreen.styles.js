@@ -7,4 +7,17 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    btn: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        maxHeight: 50,
+        width: '100%',
+        backgroundColor: '#4CB944',
+    },
+    btnText: {
+        fontSize: 16,
+        fontWeight: 'normal',
+        color: '#fff',
+    },
 });
