@@ -9,7 +9,6 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import FilterElement from '../../componenents/FilterElement/FilterElement';
-import Form from '../../componenents/FormElement/FormElement';
 import styles from './ContactScreen.styles';
 
 class ContactScreen extends Component {
@@ -73,35 +72,10 @@ class ContactScreen extends Component {
 
     _keyExtractor = (item, index) => item.name;
 
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    }
-
     render() {
         const { filteredContactList } = this.state;
         return (
             <View style={styles.container}>
-                <Modal
-                    animationType='slide'
-                    transparent={false}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() =>
-                        this.setModalVisible(!this.state.modalVisible)
-                    }
-                >
-
-                <TouchableOpacity
-                    style={styles.btn}
-                    onPress={() => this.setModalVisible(!this.state.modalVisible)}
-                >
-                    <Text style={styles.btnText}>close</Text>
-                </TouchableOpacity>
-                    <Form
-                        name={this.state.name}
-                        phoneNumber={this.state.phoneNumber}
-                        photo={this.state.photo}
-                    />
-                </Modal>
                 <FilterElement
                     filter={text => this.filterContacts(text)}
                     label='Contacts'
@@ -118,7 +92,7 @@ class ContactScreen extends Component {
                         renderItem={({ item }) => {
                             console.log(item.photo);
                             return (
-                                <View>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ContactInfo', {name: item.name, photo: item.photo, phoneNumber: item.phoneNumber})}>
                                     <Image
                                         style={{
                                             width: 50,
@@ -129,15 +103,14 @@ class ContactScreen extends Component {
                                         source={{ uri: item.photo }}
                                     />
                                     <Text>{item.name}</Text>
-                                </View>
+                                </TouchableOpacity>
                             );
                         }}
                     />
                 </ScrollView>
                 <TouchableOpacity
                     style={styles.btn}
-                    onPress={() => this.setModalVisible(!this.state.modalVisible)}
-                >
+                    onPress={() => this.props.navigation.navigate('Form', {name: '', photo: '', phoneNumber: ''})}>
                     <Text style={styles.btnText}>Add item!</Text>
                 </TouchableOpacity>
             </View>
