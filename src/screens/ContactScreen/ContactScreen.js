@@ -5,24 +5,21 @@ import {
     Text,
     Image,
     ScrollView,
-    Modal,
     TouchableOpacity,
-    StyleSheet,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 import FilterElement from '../../componenents/FilterElement/FilterElement';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './ContactScreen.styles';
-import Icon from 'react-native-vector-icons/AntDesign';
 
 class ContactScreen extends Component {
     constructor(props) {
         super(props);
-        this.addContact = this.addContact.bind(this)
+        this.addContact = this.addContact.bind(this);
         this.state = {
             contactList: [],
             filteredContactList: [],
             filterString: '',
-            modalVisible: false,
         };
     }
 
@@ -39,7 +36,7 @@ class ContactScreen extends Component {
                 name: 'Toggi',
                 phoneNumber: 7808597,
                 photo:
-                'https://img.ehf.eu/ecpictures/E6dJQfOvIeeNLqJ52Xmi63K-jtIN8kf5q9wdbm68Z_5618Vjyditu9QSwz0GjkURoTvrdzPGKP5u9_sJBCdhbbbeFb3Gf3_abMkSMrjhGrWfmoo2jmJuprtmd-gsxBMV'
+                    'https://img.ehf.eu/ecpictures/E6dJQfOvIeeNLqJ52Xmi63K-jtIN8kf5q9wdbm68Z_5618Vjyditu9QSwz0GjkURoTvrdzPGKP5u9_sJBCdhbbbeFb3Gf3_abMkSMrjhGrWfmoo2jmJuprtmd-gsxBMV',
             },
             {
                 name: 'Eyþór',
@@ -59,53 +56,65 @@ class ContactScreen extends Component {
         const newContact = { name, photo, phoneNumber };
         const newContacts = [...contactList];
         newContacts.push(newContact);
-        this.setState({ contactList: newContacts }, () =>
-            this.filterContacts(this.state.filterString),
-        );
+        this.setState({ contactList: newContacts }, () => {
+            this.filterContacts(this.state.filterString);
+        });
     }
 
     filterContacts(text) {
         const { contactList } = this.state;
         const newContacts = [...contactList].filter(
-            element =>
-                element.name.toLowerCase().includes(text.toLowerCase()) ||
-                element.phoneNumber.toString().includes(text),
+            (element) => element.name.toLowerCase().includes(text.toLowerCase())
+                || element.phoneNumber.toString().includes(text),
         );
         this.setState({ filteredContactList: newContacts, filterString: text });
     }
-
-    _keyExtractor = (item, index) => item.name;
 
     render() {
         const { filteredContactList } = this.state;
         return (
             <View style={defaultStyles.container}>
                 <FilterElement
-                    filter={text => this.filterContacts(text)}
-                    label='Contacts'
+                    filter={(text) => this.filterContacts(text)}
+                    label="Contacts"
                 />
                 <ScrollView>
                     <FlatList
                         data={filteredContactList.sort((a, b) => a.name.localeCompare(b.name))}
-                        keyExtractor={this._keyExtractor}
-                        renderItem={({ item, index }) => {
-                            return (
-                                <TouchableOpacity style={styles.flatlistItem} onPress={() => this.props.navigation.navigate('ContactInfo', {name: item.name, photo: item.photo, phoneNumber: item.phoneNumber, submit: this.addContact })}>
-                                    <Image
-                                        style={styles.image}
-                                        source={{uri : item.photo}}
-                                    />
-                                    <Text style={styles.itemName}>{item.name}</Text>
-                                </TouchableOpacity>
-                            );
-                        }}
+                        renderItem={({ item }) => (
+                            <TouchableOpacity
+                                key={item.name}
+                                style={styles.flatlistItem}
+                                // eslint-disable-next-line react/prop-types
+                                onPress={() => this.props.navigation.navigate(
+                                    'ContactInfo',
+                                    {
+                                        name: item.name,
+                                        photo: item.photo,
+                                        phoneNumber: item.phoneNumber,
+                                    },
+                                )}
+                            >
+                                <Image
+                                    style={styles.image}
+                                    source={{ uri: item.photo }}
+                                />
+                                <Text style={styles.itemName}>{item.name}</Text>
+                            </TouchableOpacity>
+                        )}
                     />
                 </ScrollView>
                 <TouchableOpacity
                     style={styles.addContactButton}
-                    onPress={() => this.props.navigation.navigate('Form', {name: '', photo: '', phoneNumber: ''})}
+                    // eslint-disable-next-line react/prop-types
+                    onPress={() => this.props.navigation.navigate('Form', {
+                        name: '',
+                        photo: '',
+                        phoneNumber: '',
+                        onPress: this.addContact,
+                    })}
                 >
-                    <Icon style={styles.icon} size={25}  name="plus" />
+                    <Icon style={styles.icon} size={25} name="plus" />
                 </TouchableOpacity>
             </View>
         );

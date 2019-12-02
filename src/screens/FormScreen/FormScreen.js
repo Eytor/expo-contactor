@@ -28,9 +28,14 @@ class Form extends Component {
         });
     }
 
+    submit(name, phoneNumber, photo) {
+        const { onPress } = this.props.navigation.state.params;
+        this.props.navigation.pop();
+        onPress(name, phoneNumber, photo);
+    }
+
 
     render() {
-        const { submit } = this.props.navigation.state.params;
         return (
             <View style={defaultStyles.container}>
                 <View>
@@ -59,7 +64,7 @@ class Form extends Component {
                 </View>
                 <TouchableOpacity
                     // style={styles.addContactButton}
-                    onPress={() => { submit(this.name, this.phonenumber, this.photo); }}
+                    onPress={() => { this.submit(this.state.name, this.state.phonenumber, this.state.photo); }}
                 >
                     <Text style={styles.btnText}>Add item!</Text>
                 </TouchableOpacity>
