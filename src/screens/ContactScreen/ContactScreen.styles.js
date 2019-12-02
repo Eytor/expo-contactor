@@ -2,21 +2,20 @@ import { StyleSheet } from 'react-native';
 import { Colors } from '../../resources/resources';
 
 export default StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        backgroundColor: Colors.background,
-        padding: 15,
-        position: 'relative',
-    },
     flatlistItem: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         paddingVertical: 5,
         borderWidth: 0,
         borderBottomWidth: 1,
         borderColor: Colors.mainBorder,
+    },
+    image: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        marginRight: 15,
     },
     itemName: {
         color: '#fff',

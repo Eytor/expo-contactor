@@ -5,6 +5,7 @@ import {
     TextInput,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import defaultStyles from '../../resources/defaultStyles';
 
 class Form extends Component {
     constructor(probs) {
@@ -27,7 +28,7 @@ class Form extends Component {
 
     render() {
         return (
-            <View>
+            <View style={defaultStyles.container}>
                 <View>
                     <Text>Name</Text>
                     <TextInput

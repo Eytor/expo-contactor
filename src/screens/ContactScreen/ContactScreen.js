@@ -10,6 +10,7 @@ import {
     StyleSheet,
 } from 'react-native';
 import FilterElement from '../../componenents/FilterElement/FilterElement';
+import defaultStyles from '../../resources/defaultStyles';
 import styles from './ContactScreen.styles';
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -77,7 +78,7 @@ class ContactScreen extends Component {
     render() {
         const { filteredContactList } = this.state;
         return (
-            <View style={styles.container}>
+            <View style={defaultStyles.container}>
                 <FilterElement
                     filter={text => this.filterContacts(text)}
                     label='Contacts'
@@ -89,14 +90,11 @@ class ContactScreen extends Component {
                         renderItem={({ item, index }) => {
                             return (
                                 <TouchableOpacity style={styles.flatlistItem} onPress={() => this.props.navigation.navigate('ContactInfo', {name: item.name, photo: item.photo, phoneNumber: item.phoneNumber})}>
-                                    <Text style={styles.itemName}>{item.name}</Text>
                                     <Image
-                                        style={{
-                                            width: 50,
-                                            height: 50,
-                                        }}
+                                        style={styles.image}
                                         source={{uri : item.photo}}
                                     />
+                                    <Text style={styles.itemName}>{item.name}</Text>
                                 </TouchableOpacity>
                             );
                         }}
