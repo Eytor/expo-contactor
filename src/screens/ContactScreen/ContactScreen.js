@@ -89,6 +89,13 @@ class ContactScreen extends Component {
                         this.setModalVisible(!this.state.modalVisible)
                     }
                 >
+
+                <TouchableOpacity
+                    style={styles.btn}
+                    onPress={() => this.setModalVisible(!this.state.modalVisible)}
+                >
+                    <Text style={styles.btnText}>close</Text>
+                </TouchableOpacity>
                     <Form
                         name={this.state.name}
                         phoneNumber={this.state.phoneNumber}
