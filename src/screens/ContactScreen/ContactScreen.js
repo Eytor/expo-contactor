@@ -10,7 +10,6 @@ import {
     StyleSheet,
 } from 'react-native';
 import FilterElement from '../../componenents/FilterElement/FilterElement';
-import Form from '../../componenents/FormElement/FormElement';
 import styles from './ContactScreen.styles';
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -75,34 +74,10 @@ class ContactScreen extends Component {
 
     _keyExtractor = (item, index) => item.name;
 
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    }
-
     render() {
         const { filteredContactList } = this.state;
         return (
             <View style={styles.container}>
-                <Modal
-                    animationType='fade'
-                    transparent={false}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() =>
-                        this.setModalVisible(!this.state.modalVisible)
-                    }
-                >
-                    <TouchableOpacity
-                        style={styles.btn}
-                        onPress={() => this.setModalVisible(!this.state.modalVisible)}
-                    >
-                        <Text style={styles.btnText}>close</Text>
-                    </TouchableOpacity>
-                    <Form
-                        name={this.state.name}
-                        phoneNumber={this.state.phoneNumber}
-                        photo={this.state.photo}
-                    />
-                </Modal>
                 <FilterElement
                     filter={text => this.filterContacts(text)}
                     label='Contacts'
@@ -113,7 +88,7 @@ class ContactScreen extends Component {
                         keyExtractor={this._keyExtractor}
                         renderItem={({ item, index }) => {
                             return (
-                                <TouchableOpacity style={[styles.flatlistItem]}>
+                                <TouchableOpacity style={styles.flatlistItem} onPress={() => this.props.navigation.navigate('ContactInfo', {name: item.name, photo: item.photo, phoneNumber: item.phoneNumber})}>
                                     <Text style={styles.itemName}>{item.name}</Text>
                                     <Image
                                         style={{
@@ -129,7 +104,7 @@ class ContactScreen extends Component {
                 </ScrollView>
                 <TouchableOpacity
                     style={styles.addContactButton}
-                    onPress={() => this.setModalVisible(!this.state.modalVisible)}
+                    onPress={() => this.props.navigation.navigate('Form', {name: '', photo: '', phoneNumber: ''})}
                 >
                     <Icon style={styles.icon} size={25}  name="plus" />
                 </TouchableOpacity>
