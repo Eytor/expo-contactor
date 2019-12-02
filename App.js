@@ -1,9 +1,10 @@
 import React from 'react';
-import ContactScreen from './src/screens/ContactScreen/ContactScreen';
+import { createAppContainer } from 'react-navigation';
+import AppNavigator from './src/navigation/navigator';
 
-
+const AppContainer = createAppContainer(AppNavigator);
 export default function App() {
-  return (
-    <ContactScreen />
-  );
+    return (
+        <AppContainer />
+    );
 }
