@@ -9,7 +9,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import FilterElement from '../../componenents/FilterElement/FilterElement';
-import Form from '../../componenents/Form';
+import Form from '../../componenents/FormElement/FormElement';
 import styles from './ContactScreen.styles';
 
 class ContactScreen extends Component {
