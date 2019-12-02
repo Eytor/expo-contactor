@@ -5,6 +5,7 @@ import {
     TextInput,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import CameraComponent from './CameraComponent/CameraComponent';
 
 class Form extends Component {
     constructor(probs) {
