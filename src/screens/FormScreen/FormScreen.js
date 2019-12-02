@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {
     View,
     TextInput,
+    TouchableOpacity,
+    Text,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import defaultStyles from '../../resources/defaultStyles';
@@ -26,7 +28,9 @@ class Form extends Component {
         });
     }
 
+
     render() {
+        const { submit } = this.props.navigation.state.params;
         return (
             <View style={defaultStyles.container}>
                 <View>
@@ -53,6 +57,12 @@ class Form extends Component {
                         onChangeText={(photo) => this.setState({ photo })}
                     />
                 </View>
+                <TouchableOpacity
+                    // style={styles.addContactButton}
+                    onPress={() => { submit(this.name, this.phonenumber, this.photo); }}
+                >
+                    <Text style={styles.btnText}>Add item!</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -62,6 +72,7 @@ Form.propTypes = {
     name: PropTypes.string,
     phonenumber: PropTypes.number,
     photo: PropTypes.string,
+    navigation: PropTypes.object.isRequired,
 };
 
 Form.defaultProps = {
