@@ -7,10 +7,11 @@ import {
     ScrollView,
     Modal,
     TouchableOpacity,
+    StyleSheet,
 } from 'react-native';
 import FilterElement from '../../componenents/FilterElement/FilterElement';
-import Form from '../../componenents/FormElement/FormElement';
 import styles from './ContactScreen.styles';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 class ContactScreen extends Component {
     constructor(props) {
@@ -30,19 +31,19 @@ class ContactScreen extends Component {
                 name: 'Jón Bjarni',
                 phoneNumber: 6169551,
                 photo:
-                    'https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-1/p320x320/12039708_10153560434208346_7355157896497052615_n.jpg',
+                    'http://fh.is/wp-content/uploads/2017/06/jon.bjarni-e1497955997831.jpg',
             },
             {
                 name: 'Toggi',
                 phoneNumber: 7808597,
                 photo:
-                    'https://scontent-arn2-2.xx.fbcdn.net/v/t1.0-1/p320x320/13394049_1332072183476066_3074423523144104912_n.jpg',
+                'https://img.ehf.eu/ecpictures/E6dJQfOvIeeNLqJ52Xmi63K-jtIN8kf5q9wdbm68Z_5618Vjyditu9QSwz0GjkURoTvrdzPGKP5u9_sJBCdhbbbeFb3Gf3_abMkSMrjhGrWfmoo2jmJuprtmd-gsxBMV'
             },
             {
                 name: 'Eyþór',
                 phoneNumber: 6169551,
                 photo:
-                    'https://scontent-arn2-2.xx.fbcdn.net/v/t1.0-1/12592708_10207529889660799_1622688881996220725_n.jpg',
+                    'http://fh.is/wp-content/uploads/2016/05/090A4405-e1536935614911-297x300.jpg',
             },
         ];
         this.setState({
@@ -73,64 +74,43 @@ class ContactScreen extends Component {
 
     _keyExtractor = (item, index) => item.name;
 
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    }
-
     render() {
         const { filteredContactList } = this.state;
         return (
             <View style={styles.container}>
-                <Modal
-                    animationType='slide'
-                    transparent={false}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() =>
-                        this.setModalVisible(!this.state.modalVisible)
-                    }
-                >
-                    <Form
-                navigation={this.props.navigation} />
-                </Modal>
                 <FilterElement
                     filter={text => this.filterContacts(text)}
                     label='Contacts'
                 />
-                <ScrollView
-                    style={{
-                        flex: 1,
-                        width: '100%',
-                    }}
-                >
+                <ScrollView>
                     <FlatList
                         data={filteredContactList.sort((a, b) => a.name.localeCompare(b.name))}
                         keyExtractor={this._keyExtractor}
-                        renderItem={({ item }) => {
+                        renderItem={({ item, index }) => {
                             return (
-                                <View>
+                                <TouchableOpacity style={styles.flatlistItem} onPress={() => this.props.navigation.navigate('ContactInfo', {name: item.name, photo: item.photo, phoneNumber: item.phoneNumber})}>
+                                    <Text style={styles.itemName}>{item.name}</Text>
                                     <Image
                                         style={{
                                             width: 50,
                                             height: 50,
-                                            borderWidth: 1,
-                                            borderColor: 'blue',
                                         }}
-                                        source={{ uri: item.photo }}
+                                        source={{uri : item.photo}}
                                     />
-                                    <Text>{item.name}</Text>
-                                </View>
+                                </TouchableOpacity>
                             );
                         }}
                     />
                 </ScrollView>
                 <TouchableOpacity
-                    style={styles.btn}
-                    onPress={() => this.setModalVisible(!this.state.modalVisible)}
+                    style={styles.addContactButton}
+                    onPress={() => this.props.navigation.navigate('Form', {name: '', photo: '', phoneNumber: ''})}
                 >
-                    <Text style={styles.btnText}>Add item!</Text>
+                    <Icon style={styles.icon} size={25}  name="plus" />
                 </TouchableOpacity>
             </View>
         );
     }
 }
+
 export default ContactScreen;
