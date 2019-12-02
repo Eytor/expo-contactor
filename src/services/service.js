@@ -5,7 +5,7 @@ import * as FileSystem from 'expo-file-system';
 
 // writeAsStringAsync - býr til mynd/texta
 export function addContact(contact) {
-    const fileName = `${FileSystem.documentDirectory + contact.name}.json`;
+    const fileName = `${FileSystem.documentDirectory}contacts/${contact.name}.json`;
     FileSystem.writeAsStringAsync(fileName, JSON.stringify(contact));
 }
 
@@ -15,9 +15,9 @@ export function deleteContact(contact) {
 }
 
 export async function getAllContacts() {
-    const files = await FileSystem.readDirectoryAsync(FileSystem.documentDirectory);
+    const files = await FileSystem.readDirectoryAsync(`${FileSystem.documentDirectory}contacts/`);
     return Promise.all(files.map(async (file) => {
-        const data = await FileSystem.readAsStringAsync(FileSystem.documentDirectory + file);
+        const data = await FileSystem.readAsStringAsync(`${FileSystem.documentDirectory}contacts/${file}`);
         return JSON.parse(data);
     }));
 }
