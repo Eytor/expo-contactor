@@ -89,7 +89,8 @@ class ContactScreen extends Component {
                         this.setModalVisible(!this.state.modalVisible)
                     }
                 >
-                    <Form />
+                    <Form
+                navigation={this.props.navigation} />
                 </Modal>
                 <FilterElement
                     filter={text => this.filterContacts(text)}
@@ -105,7 +106,6 @@ class ContactScreen extends Component {
                         data={filteredContactList.sort((a, b) => a.name.localeCompare(b.name))}
                         keyExtractor={this._keyExtractor}
                         renderItem={({ item }) => {
-                            console.log(item.photo);
                             return (
                                 <View>
                                     <Image

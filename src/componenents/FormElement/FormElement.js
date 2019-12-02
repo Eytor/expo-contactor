@@ -3,9 +3,9 @@ import {
     View,
     Text,
     TextInput,
+    TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import CameraComponent from './CameraComponent/CameraComponent';
 
 class Form extends Component {
     constructor(probs) {
@@ -27,6 +27,7 @@ class Form extends Component {
     }
 
     render() {
+        const { navigation } = this.props;
         return (
             <View>
                 <View>
@@ -50,6 +51,7 @@ class Form extends Component {
                         onChangeText={(photo) => this.setState({ photo })}
                     />
                 </View>
+                <TouchableOpacity onPress={() => navigation.navigate('Camera', {})}><Text>add photo</Text></TouchableOpacity>
             </View>
         );
     }
@@ -59,6 +61,7 @@ Form.propTypes = {
     name: PropTypes.string,
     phonenumber: PropTypes.number,
     photo: PropTypes.string,
+    navigation: PropTypes.object.isRequired,
 };
 
 Form.defaultProps = {
