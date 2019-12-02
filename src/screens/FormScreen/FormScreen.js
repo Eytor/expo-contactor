@@ -64,7 +64,9 @@ class Form extends Component {
                 </View>
                 <TouchableOpacity
                     // style={styles.addContactButton}
-                    onPress={() => { this.submit(this.state.name, this.state.phonenumber, this.state.photo); }}
+                    onPress={() => {
+                        this.submit(this.state.name, this.state.photo, this.state.phonenumber);
+                    }}
                 >
                     <Text style={styles.btnText}>Add item!</Text>
                 </TouchableOpacity>
