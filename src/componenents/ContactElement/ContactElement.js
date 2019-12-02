@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Image, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './ContactElement.styles';
 
 const ContactElement = ({
@@ -9,19 +10,23 @@ const ContactElement = ({
     <TouchableOpacity
         style={styles.flatlistItem}
         // eslint-disable-next-line react/prop-types
-        onPress={() => navigation.navigate(
-            'ContactInfo',
-            {
-                name,
-                photo,
-                phoneNumber,
-            },
-        )}
+        onPress={() => navigation.navigate('ContactInfo', {
+            name,
+            photo,
+            phoneNumber,
+        })}
     >
-        <Image
-            style={styles.image}
-            source={{ uri: photo }}
-        />
+        {photo ? (
+            <Image style={styles.image} source={{ uri: photo }} />
+        ) : (
+            <Icon
+                style={styles.image}
+                size={50}
+                name="user-circle"
+                color="#FFF"
+            />
+        )}
+
         <Text style={styles.itemName}>{name}</Text>
     </TouchableOpacity>
 );
