@@ -29,19 +29,19 @@ class ContactScreen extends Component {
                 name: 'Jón Bjarni',
                 phoneNumber: 6169551,
                 photo:
-                    'https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-1/p320x320/12039708_10153560434208346_7355157896497052615_n.jpg',
+                    'http://fh.is/wp-content/uploads/2017/06/jon.bjarni-e1497955997831.jpg',
             },
             {
                 name: 'Toggi',
                 phoneNumber: 7808597,
                 photo:
-                    'https://scontent-arn2-2.xx.fbcdn.net/v/t1.0-1/p320x320/13394049_1332072183476066_3074423523144104912_n.jpg',
+                'https://img.ehf.eu/ecpictures/E6dJQfOvIeeNLqJ52Xmi63K-jtIN8kf5q9wdbm68Z_5618Vjyditu9QSwz0GjkURoTvrdzPGKP5u9_sJBCdhbbbeFb3Gf3_abMkSMrjhGrWfmoo2jmJuprtmd-gsxBMV'
             },
             {
                 name: 'Eyþór',
                 phoneNumber: 6169551,
                 photo:
-                    'https://scontent-arn2-2.xx.fbcdn.net/v/t1.0-1/12592708_10207529889660799_1622688881996220725_n.jpg',
+                    'http://fh.is/wp-content/uploads/2016/05/090A4405-e1536935614911-297x300.jpg',
             },
         ];
         this.setState({
@@ -102,19 +102,16 @@ class ContactScreen extends Component {
                         data={filteredContactList}
                         keyExtractor={this._keyExtractor}
                         renderItem={({ item }) => {
-                            console.log(item.photo);
                             return (
                                 <View>
+                                    <Text>{item.name}</Text>
                                     <Image
                                         style={{
                                             width: 50,
                                             height: 50,
-                                            borderWidth: 1,
-                                            borderColor: 'blue',
                                         }}
-                                        source={{ uri: item.photo }}
+                                        source={{uri : item.photo}}
                                     />
-                                    <Text>{item.name}</Text>
                                 </View>
                             );
                         }}
