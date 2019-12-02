@@ -7,10 +7,12 @@ import {
     ScrollView,
     Modal,
     TouchableOpacity,
+    StyleSheet,
 } from 'react-native';
 import FilterElement from '../../componenents/FilterElement/FilterElement';
 import Form from '../../componenents/FormElement/FormElement';
 import styles from './ContactScreen.styles';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 class ContactScreen extends Component {
     constructor(props) {
@@ -82,20 +84,19 @@ class ContactScreen extends Component {
         return (
             <View style={styles.container}>
                 <Modal
-                    animationType='slide'
+                    animationType='fade'
                     transparent={false}
                     visible={this.state.modalVisible}
                     onRequestClose={() =>
                         this.setModalVisible(!this.state.modalVisible)
                     }
                 >
-
-                <TouchableOpacity
-                    style={styles.btn}
-                    onPress={() => this.setModalVisible(!this.state.modalVisible)}
-                >
-                    <Text style={styles.btnText}>close</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.btn}
+                        onPress={() => this.setModalVisible(!this.state.modalVisible)}
+                    >
+                        <Text style={styles.btnText}>close</Text>
+                    </TouchableOpacity>
                     <Form
                         name={this.state.name}
                         phoneNumber={this.state.phoneNumber}
@@ -106,19 +107,14 @@ class ContactScreen extends Component {
                     filter={text => this.filterContacts(text)}
                     label='Contacts'
                 />
-                <ScrollView
-                    style={{
-                        flex: 1,
-                        width: '100%',
-                    }}
-                >
+                <ScrollView>
                     <FlatList
                         data={filteredContactList.sort((a, b) => a.name.localeCompare(b.name))}
                         keyExtractor={this._keyExtractor}
-                        renderItem={({ item }) => {
+                        renderItem={({ item, index }) => {
                             return (
-                                <View>
-                                    <Text>{item.name}</Text>
+                                <TouchableOpacity style={[styles.flatlistItem]}>
+                                    <Text style={styles.itemName}>{item.name}</Text>
                                     <Image
                                         style={{
                                             width: 50,
@@ -126,19 +122,20 @@ class ContactScreen extends Component {
                                         }}
                                         source={{uri : item.photo}}
                                     />
-                                </View>
+                                </TouchableOpacity>
                             );
                         }}
                     />
                 </ScrollView>
                 <TouchableOpacity
-                    style={styles.btn}
+                    style={styles.addContactButton}
                     onPress={() => this.setModalVisible(!this.state.modalVisible)}
                 >
-                    <Text style={styles.btnText}>Add item!</Text>
+                    <Icon style={styles.icon} size={25}  name="plus" />
                 </TouchableOpacity>
             </View>
         );
     }
 }
+
 export default ContactScreen;
