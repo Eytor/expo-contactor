@@ -9,6 +9,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import FilterElement from '../../componenents/FilterElement/FilterElement';
+import Form from '../../componenents/FormElement/FormElement';
 import styles from './ContactScreen.styles';
 
 class ContactScreen extends Component {
@@ -87,7 +88,20 @@ class ContactScreen extends Component {
                     onRequestClose={() =>
                         this.setModalVisible(!this.state.modalVisible)
                     }
-                ></Modal>
+                >
+
+                <TouchableOpacity
+                    style={styles.btn}
+                    onPress={() => this.setModalVisible(!this.state.modalVisible)}
+                >
+                    <Text style={styles.btnText}>close</Text>
+                </TouchableOpacity>
+                    <Form
+                        name={this.state.name}
+                        phoneNumber={this.state.phoneNumber}
+                        photo={this.state.photo}
+                    />
+                </Modal>
                 <FilterElement
                     filter={text => this.filterContacts(text)}
                     label='Contacts'
@@ -99,7 +113,7 @@ class ContactScreen extends Component {
                     }}
                 >
                     <FlatList
-                        data={filteredContactList}
+                        data={filteredContactList.sort((a, b) => a.name.localeCompare(b.name))}
                         keyExtractor={this._keyExtractor}
                         renderItem={({ item }) => {
                             return (
