@@ -62,6 +62,7 @@ class ContactScreen extends Component {
                 <ScrollView>
                     <FlatList
                         data={filteredContactList.sort((a, b) => a.name.localeCompare(b.name))}
+                        keyExtractor={(item) => item.name}
                         renderItem={({ item }) => (
                             <ContactElement
                                 name={item.name}
