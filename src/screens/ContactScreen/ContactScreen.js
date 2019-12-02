@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import {
     FlatList,
     View,
-    Text,
-    Image,
     ScrollView,
     TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import PropTypes from 'prop-types';
+import ContactElement from '../../componenents/ContactElement/ContactElement';
 import FilterElement from '../../componenents/FilterElement/FilterElement';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './ContactScreen.styles';
@@ -63,25 +63,12 @@ class ContactScreen extends Component {
                     <FlatList
                         data={filteredContactList.sort((a, b) => a.name.localeCompare(b.name))}
                         renderItem={({ item }) => (
-                            <TouchableOpacity
-                                key={item.name}
-                                style={styles.flatlistItem}
-                                // eslint-disable-next-line react/prop-types
-                                onPress={() => this.props.navigation.navigate(
-                                    'ContactInfo',
-                                    {
-                                        name: item.name,
-                                        photo: item.photo,
-                                        phoneNumber: item.phoneNumber,
-                                    },
-                                )}
-                            >
-                                <Image
-                                    style={styles.image}
-                                    source={{ uri: item.photo }}
-                                />
-                                <Text style={styles.itemName}>{item.name}</Text>
-                            </TouchableOpacity>
+                            <ContactElement
+                                name={item.name}
+                                phoneNumber={item.phoneNumber}
+                                photo={item.photo}
+                                navigation={this.props.navigation}
+                            />
                         )}
                     />
                 </ScrollView>
@@ -101,5 +88,9 @@ class ContactScreen extends Component {
         );
     }
 }
+
+ContactScreen.propTypes = {
+    navigation: PropTypes.object.isRequired,
+};
 
 export default ContactScreen;

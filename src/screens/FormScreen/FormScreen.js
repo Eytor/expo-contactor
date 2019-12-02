@@ -51,6 +51,7 @@ class Form extends Component {
                         placeholder="Phone number"
                         style={[defaultStyles.input, styles.input]}
                         value={this.state.phonenumber}
+                        keyboardType="numeric"
                         onChangeText={(phonenumber) => this.setState({ phonenumber })}
                     />
                 </View>
@@ -77,14 +78,14 @@ class Form extends Component {
 
 Form.propTypes = {
     name: PropTypes.string,
-    phonenumber: PropTypes.number,
+    phonenumber: PropTypes.string,
     photo: PropTypes.string,
     navigation: PropTypes.object.isRequired,
 };
 
 Form.defaultProps = {
     name: '',
-    phonenumber: null,
+    phonenumber: '',
     photo: '',
 };
 
