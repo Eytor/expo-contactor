@@ -28,9 +28,13 @@ const ContactElement = ({
 
 ContactElement.propTypes = {
     name: PropTypes.string.isRequired,
-    phoneNumber: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
+    phoneNumber: PropTypes.string,
+    photo: PropTypes.string,
     navigation: PropTypes.object.isRequired,
+};
+ContactElement.defaultProps = {
+    phoneNumber: '',
+    photo: '',
 };
 
 export default ContactElement;
