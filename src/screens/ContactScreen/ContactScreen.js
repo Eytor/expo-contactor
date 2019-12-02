@@ -113,7 +113,7 @@ class ContactScreen extends Component {
                     }}
                 >
                     <FlatList
-                        data={filteredContactList}
+                        data={filteredContactList.sort((a, b) => a.name.localeCompare(b.name))}
                         keyExtractor={this._keyExtractor}
                         renderItem={({ item }) => {
                             console.log(item.photo);
