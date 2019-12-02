@@ -1,23 +1,33 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from '../../resources/resources';
 
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: Colors.background,
         alignItems: 'center',
         justifyContent: 'center',
     },
-    btn: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        maxHeight: 50,
-        width: '100%',
-        backgroundColor: '#4CB944',
+    image: {
+        width: 200,
+        height: 200,
+        borderRadius: 100,
     },
-    btnText: {
-        fontSize: 16,
+    name: {
+        fontSize: 28,
+        fontWeight: 'bold',
+        color: '#fff',
+    },
+    phoneNumber: {
+        fontSize: 25,
         fontWeight: 'normal',
         color: '#fff',
+    },
+    phoneWrapper: {
+        flexDirection: 'row',
+    },
+    icon: {
+        paddingRight: 10,
+        paddingTop: 6,
     },
 });

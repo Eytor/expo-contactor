@@ -3,8 +3,11 @@ import {
     View,
     Text,
     Image,
+    TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Colors } from '../../resources/resources';
 import styles from './ContactInfoScreen.styles';
 
 class ContactInfoScreen extends Component {
@@ -13,16 +16,14 @@ class ContactInfoScreen extends Component {
         return (
             <View style={styles.container}>
                 <Image
-                    style={{
-                        width: 50,
-                        height: 50,
-                        borderWidth: 1,
-                        borderColor: 'blue',
-                    }}
+                    style={styles.image}
                     source={{ uri: photo }}
                 />
-                <Text>{ name }</Text>
-                <Text>{ phoneNumber }</Text>
+                <Text style={styles.name}>{ name }</Text>
+                <TouchableOpacity style={styles.phoneWrapper} onPress={() => console.log('Calling ', name)}>
+                    <Icon style={styles.icon} size={25} name="phone" color={Colors.success} />
+                    <Text style={styles.phoneNumber}>{ phoneNumber }</Text>
+                </TouchableOpacity>
             </View>
         );
     }
