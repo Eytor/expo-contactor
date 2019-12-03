@@ -14,6 +14,7 @@ export default StyleSheet.create({
         backgroundColor: Colors.arsenic,
         borderRadius: 30,
         padding: 30,
+        marginBottom: 15,
         position: 'relative',
     },
     noPadVertical: {

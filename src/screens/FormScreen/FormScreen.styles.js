@@ -5,9 +5,9 @@ import { Colors } from '../../resources/resources';
 export default StyleSheet.create({
     input: {
         padding: 5,
-        marginBottom: 15,
+        marginBottom: 5,
         backgroundColor: 'transparent',
-        borderColor: Colors.gray,
+        borderColor: Colors.success,
     },
     imageWrapper: {
         backgroundColor: Colors.arsenic,
@@ -21,7 +21,7 @@ export default StyleSheet.create({
         borderRadius: 25,
     },
     formGroup: {
-        marginTop: 30,
+        marginTop: 15,
     },
     keyboardWrapper: {
         flex: 1,
@@ -34,6 +34,6 @@ export default StyleSheet.create({
         borderColor: Colors.error,
     },
     errorText: {
-        color: '#D62828',
+        color: Colors.error,
     },
 });

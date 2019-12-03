@@ -69,8 +69,8 @@ class Form extends Component {
 
                                 </TouchableOpacity>
                             </View>
-                            <View style={styles.formGroup}>
-                                <View>
+                            <View>
+                                <View style={styles.formGroup}>
                                     <TextInput
                                         style={[defaultStyles.input, styles.input,
                                             !this.state.name && styles.errorInput]}
@@ -82,7 +82,7 @@ class Form extends Component {
                                         <Text style={styles.errorText}>Name is required</Text>
                                     )}
                                 </View>
-                                <View>
+                                <View style={styles.formGroup}>
                                     <TextInput
                                         placeholder="Phone number"
                                         style={[defaultStyles.input, styles.input,

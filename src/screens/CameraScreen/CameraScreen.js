@@ -3,7 +3,9 @@ import * as Permissions from 'expo-permissions';
 import PropTypes from 'prop-types';
 import { Camera } from 'expo-camera';
 import { Text, View, TouchableOpacity } from 'react-native';
+import AntIcon from 'react-native-vector-icons/AntDesign';
 import { SafeAreaView } from 'react-navigation';
+import styles from './CamerScreen.styles';
 
 class CameraScreen extends React.Component {
     constructor(props) {
@@ -40,63 +42,39 @@ class CameraScreen extends React.Component {
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <Camera
+                    style={styles.cameraContainer}
                     ref={(ref) => {
                         this.camera = ref;
                     }}
-                    style={{ flex: 1 }}
                     type={this.state.type}
                 >
-                    <View
-                        style={{
-                            flex: 1,
-                            backgroundColor: 'transparent',
-                            flexDirection: 'row',
-                        }}
-                    >
-                        <TouchableOpacity
-                            style={{
-                                flex: 1,
-                                alignSelf: 'flex-end',
-                                alignItems: 'center',
-                            }}
-                            onPress={() => {
-                                this.setState({
-                                    type:
-                                        this.state.type
-                                        === Camera.Constants.Type.back
-                                            ? Camera.Constants.Type.front
-                                            : Camera.Constants.Type.back,
-                                });
-                            }}
-                        >
-                            <Text
-                                style={{
-                                    fontSize: 18,
-                                    marginBottom: 10,
-                                    color: 'white',
+                    <View style={styles.cameraWrapper}>
+                        <View style={styles.flip}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    this.setState({
+                                        type:
+                                            this.state.type
+                                            === Camera.Constants.Type.back
+                                                ? Camera.Constants.Type.front
+                                                : Camera.Constants.Type.back,
+                                    });
                                 }}
                             >
-                                Flip
-                            </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={{
-                                flex: 1,
-                                alignSelf: 'flex-end',
-                                alignItems: 'center',
-                            }}
-                            onPress={this.snap}
-                        >
-                            <Text
-                                style={{
-                                    fontSize: 18,
-                                    marginBottom: 10,
-                                    color: 'white',
-                                }}
+                                <AntIcon name="retweet" size={25} style={{ color: '#fff'}} />
+                            </TouchableOpacity>
+                        </View>
+                        <View>
+                            <TouchableOpacity
+                                style={styles.snapContainer}
+                                onPress={this.snap}
                             >
-                                Take photo
-                            </Text>
-                        </TouchableOpacity>
+                                <View style={styles.snapWrapper}>
+                                    <View style={styles.snapOuterBorder} />
+                                    <View style={styles.snapBtn} />
+                                </View>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </Camera>
             </SafeAreaView>
