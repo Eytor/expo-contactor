@@ -57,7 +57,13 @@ const AppNavigator = createStackNavigator(
                     backgroundColor: 'transparent',
                 },
                 headerTintColor: '#FFF',
-                headerRight: () => (
+                headerRight: navigation.state.params.image ? () => (
+                    <View>
+                        <TouchableOpacity onPress={navigation.state.params.clearPhoto}>
+                            <AntIcon name="close" size={25} style={{ color: '#fff' }} />
+                        </TouchableOpacity>
+                    </View>
+                ) : () => (
                     <View>
                         <TouchableOpacity onPress={navigation.state.params.switchType}>
                             <AntIcon name="retweet" size={25} style={{ color: '#fff' }} />
