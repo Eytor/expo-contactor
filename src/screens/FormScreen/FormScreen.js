@@ -106,7 +106,8 @@ class Form extends Component {
                         <TouchableOpacity
                             style={[defaultStyles.successButton,
                                 { marginRight: 15, marginBottom: 15 },
-                                (!this.state.name || !this.state.phoneNumber) && { opacity: 0.5 }]}
+                                (!this.state.name || !this.state.phoneNumber) ? { opacity: 0.5 } : { opacity: 1 }]}
+                            disabled={(!this.state.name || !this.state.phoneNumber)}
                             onPress={() => {
                                 this.submit(this.state.name,
                                     this.state.phoneNumber,
