@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import {
-    View,
-    Text,
-    TouchableOpacity,
-} from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Colors } from '../../resources/resources';
@@ -29,7 +25,10 @@ class ContactInfoScreen extends Component {
 
     componentWillMount() {
         const {
-            name, phoneNumber, photo, id,
+            name,
+            phoneNumber,
+            photo,
+            id,
         } = this.props.navigation.state.params;
         this.setState({
             oldName: name,
@@ -42,42 +41,64 @@ class ContactInfoScreen extends Component {
 
     componentWillUnmount() {
         if (this.state.isEdited) {
-            this.props.navigation.state.edit(this.state.id, this.state.name, this.state.photo, this.state.phoneNumber);
+            this.props.navigation.state.params.edit(
+                this.state.id,
+                this.state.name,
+                this.state.photo,
+                this.state.phoneNumber,
+            );
         }
     }
 
     saveContact(name, phoneNumber, photo) {
-        this.setState({
-            name,
-            phoneNumber,
-            photo,
-            isEdited: true,
-        }, () => editContact({
-            id: this.state.id, oldName: this.state.oldName, name, phoneNumber, photo,
-        }));
+        this.setState(
+            {
+                name,
+                phoneNumber,
+                photo,
+                isEdited: true,
+            },
+            () => editContact({
+                id: this.state.id,
+                oldName: this.state.oldName,
+                name,
+                phoneNumber,
+                photo,
+            }),
+        );
     }
 
     render() {
-        const {
-            name, phoneNumber, photo,
-        } = this.state;
+        const { name, phoneNumber, photo } = this.state;
         return (
-            <View style={[defaultStyles.container, defaultStyles.noPadVertical]}>
+            <View
+                style={[defaultStyles.container, defaultStyles.noPadVertical]}
+            >
                 <View style={defaultStyles.wrapper}>
                     <View style={defaultStyles.imageWrapper}>
                         <ImageElement photo={photo} />
                     </View>
                     <View style={styles.metaWrapper}>
                         <View>
-                            <Text style={styles.name}>{ name }</Text>
+                            <Text style={styles.name}>{name}</Text>
                         </View>
                         <View>
-                            <Text style={styles.phoneNumber}>{ phoneNumber }</Text>
+                            <Text style={styles.phoneNumber}>
+                                {phoneNumber}
+                            </Text>
                         </View>
                     </View>
                     <View style={styles.buttonWrapper}>
-                        <TouchableOpacity style={styles.phoneWrapper} onPress={() => console.log('Calling ', name)}>
-                            <Icon style={styles.icon} size={25} name="phone" color={Colors.success} />
+                        <TouchableOpacity
+                            style={styles.phoneWrapper}
+                            onPress={() => console.log('Calling ', name)}
+                        >
+                            <Icon
+                                style={styles.icon}
+                                size={25}
+                                name="phone"
+                                color={Colors.success}
+                            />
                         </TouchableOpacity>
                         <SettingsButton
                             name={name}

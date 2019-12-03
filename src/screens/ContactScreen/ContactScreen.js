@@ -51,13 +51,16 @@ class ContactScreen extends Component {
     }
 
     edit(id, name, photo, phoneNumber) {
-        const { contactList } = this.state;
-        let newContactList = [...contactList]
-        const index = newContactList.findIndex(i => i.id === id);
+        console.log('editing: ', name, phoneNumber);
+        const newContactList = this.state.contactList;
+        const index = newContactList.findIndex((i) => i.id === id);
+        console.log(index);
         newContactList[index] = {
             id, name, photo, phoneNumber,
         };
-        this.setState({contactList: newContactList}, this.filterContacts(this.state.filterString));
+        console.log(newContactList);
+        this.setState({ contactList: newContactList },
+            this.filterContacts(this.state.filterString));
     }
 
     filterContacts(text) {
