@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextInput } from 'react-native';
-import styles from './FilterElement.styles';
+import styles from '../../resources/defaultStyles';
 
 const FilterElement = ({ filter, label }) => (
     <TextInput placeholder={`Search ${label}`} style={styles.input} onChangeText={(text) => filter(text)} />

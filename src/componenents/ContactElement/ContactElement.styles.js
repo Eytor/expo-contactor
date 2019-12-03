@@ -22,22 +22,4 @@ export default StyleSheet.create({
         fontSize: 16,
         fontWeight: '500',
     },
-    addContactButton: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 60,
-        height: 60,
-        position: 'absolute',
-        right: 15,
-        bottom: 15,
-        borderRadius: 50,
-        backgroundColor: Colors.success,
-        zIndex: 100,
-    },
-
-    icon: {
-        width: 25,
-        height: 25,
-        color: '#fff',
-    },
 });

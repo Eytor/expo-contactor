@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {
     View,
-    Text,
     TextInput,
     TouchableOpacity,
+    Text,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import defaultStyles from '../../resources/defaultStyles';
+import styles from './FormScreen.styles';
 
 class Form extends Component {
     constructor(probs) {
@@ -26,32 +28,51 @@ class Form extends Component {
         });
     }
 
+    submit(name, phoneNumber, photo) {
+        const { onPress } = this.props.navigation.state.params;
+        this.props.navigation.pop();
+        onPress(name, phoneNumber, photo);
+    }
+
+
     render() {
         const { navigation } = this.props;
         return (
-            <View>
+            <View style={defaultStyles.container}>
                 <View>
-                    <Text>Name</Text>
                     <TextInput
+                        style={[defaultStyles.input, styles.input]}
+                        placeholder="Name"
                         value={this.state.name}
                         onChangeText={(name) => this.setState({ name })}
                     />
                 </View>
                 <View>
-                    <Text>Phone Number</Text>
                     <TextInput
+                        placeholder="Phone number"
+                        style={[defaultStyles.input, styles.input]}
                         value={this.state.phonenumber}
+                        keyboardType="numeric"
                         onChangeText={(phonenumber) => this.setState({ phonenumber })}
                     />
                 </View>
                 <View>
-                    <Text>Photo</Text>
                     <TextInput
+                        placeholder="Photo"
+                        style={[defaultStyles.input, styles.input]}
                         value={this.state.photo}
                         onChangeText={(photo) => this.setState({ photo })}
                     />
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('Camera', {})}><Text>add photo</Text></TouchableOpacity>
+                <TouchableOpacity
+                    // style={styles.addContactButton}
+                    onPress={() => {
+                        this.submit(this.state.name, this.state.photo, this.state.phonenumber);
+                    }}
+                >
+                    <Text style={styles.btnText}>Add item!</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -59,14 +80,14 @@ class Form extends Component {
 
 Form.propTypes = {
     name: PropTypes.string,
-    phonenumber: PropTypes.number,
+    phonenumber: PropTypes.string,
     photo: PropTypes.string,
     navigation: PropTypes.object.isRequired,
 };
 
 Form.defaultProps = {
     name: '',
-    phonenumber: null,
+    phonenumber: '',
     photo: '',
 };
 
