@@ -20,6 +20,14 @@ class CameraComponent extends React.Component {
         });
     }
 
+    snap = async () => {
+        if (this.camera) {
+          let photo = await this.camera.takePictureAsync({base64: true});
+          this.props.navigation.state.params.savePhoto(photo.base64);
+          this.props.navigation.pop();
+        }
+      };
+
     render() {
         const { hasCameraPermission } = this.state;
         if (hasCameraPermission === null) {
@@ -30,7 +38,13 @@ class CameraComponent extends React.Component {
         }
         return (
             <SafeAreaView style={{ flex: 1 }}>
-                <Camera style={{ flex: 1 }} type={this.state.type}>
+                <Camera
+                    ref={(ref) => {
+                        this.camera = ref;
+                    }}
+                    style={{ flex: 1 }}
+                    type={this.state.type}
+                >
                     <View
                         style={{
                             flex: 1,
@@ -40,7 +54,7 @@ class CameraComponent extends React.Component {
                     >
                         <TouchableOpacity
                             style={{
-                                flex: 0.1,
+                                flex: 1,
                                 alignSelf: 'flex-end',
                                 alignItems: 'center',
                             }}
@@ -62,6 +76,24 @@ class CameraComponent extends React.Component {
                                 }}
                             >
                                 Flip
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={{
+                                flex: 1,
+                                alignSelf: 'flex-end',
+                                alignItems: 'center',
+                            }}
+                            onPress={this.snap}
+                        >
+                            <Text
+                                style={{
+                                    fontSize: 18,
+                                    marginBottom: 10,
+                                    color: 'white',
+                                }}
+                            >
+                                Take photo
                             </Text>
                         </TouchableOpacity>
                     </View>

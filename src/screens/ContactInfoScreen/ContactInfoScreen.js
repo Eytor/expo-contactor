@@ -24,7 +24,7 @@ class ContactInfoScreen extends Component {
                 />
                 <Image
                     style={styles.image}
-                    source={{ uri: photo }}
+                    source={{ uri: `data:image/png;base64,${photo}` }}
                 />
                 <Text style={styles.name}>{ name }</Text>
                 <TouchableOpacity style={styles.phoneWrapper} onPress={() => console.log('Calling ', name)}>

@@ -4,19 +4,21 @@ import {
     TextInput,
     TouchableOpacity,
     Text,
+    Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './FormScreen.styles';
 
 class Form extends Component {
     constructor(probs) {
         super(probs);
+        this.setPhoto = this.setPhoto.bind(this);
         this.state = {
             name: null,
             phonenumber: null,
             photo: null,
-
         };
     }
 
@@ -28,6 +30,10 @@ class Form extends Component {
         });
     }
 
+    setPhoto(base64) {
+        this.setState({ photo: base64 });
+    }
+
     submit(name, phoneNumber, photo) {
         const { onPress } = this.props.navigation.state.params;
         this.props.navigation.pop();
@@ -37,8 +43,23 @@ class Form extends Component {
 
     render() {
         const { navigation } = this.props;
+        const { photo } = this.state;
         return (
             <View style={defaultStyles.container}>
+                <TouchableOpacity onPress={() => navigation.navigate('Camera', { savePhoto: this.setPhoto })}>
+                    {photo ? (
+                        <Image style={styles.image} source={{ uri: `data:image/png;base64,${photo}` }} />
+                    ) : (
+                        <Icon
+                            style={styles.image}
+                            size={50}
+                            name="user-circle"
+                            color="#FFF"
+                        />
+                    )}
+
+                </TouchableOpacity>
+
                 <View>
                     <TextInput
                         style={[defaultStyles.input, styles.input]}
@@ -56,15 +77,6 @@ class Form extends Component {
                         onChangeText={(phonenumber) => this.setState({ phonenumber })}
                     />
                 </View>
-                <View>
-                    <TextInput
-                        placeholder="Photo"
-                        style={[defaultStyles.input, styles.input]}
-                        value={this.state.photo}
-                        onChangeText={(photo) => this.setState({ photo })}
-                    />
-                </View>
-                <TouchableOpacity onPress={() => navigation.navigate('Camera', {})}><Text>add photo</Text></TouchableOpacity>
                 <TouchableOpacity
                     // style={styles.addContactButton}
                     onPress={() => {

@@ -17,7 +17,7 @@ const ContactElement = ({
         })}
     >
         {photo ? (
-            <Image style={styles.image} source={{ uri: photo }} />
+            <Image style={styles.image} source={{ uri: `data:image/png;base64,${photo}` }} />
         ) : (
             <Icon
                 style={styles.image}
