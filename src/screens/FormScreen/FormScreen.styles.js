@@ -18,9 +18,15 @@ export default StyleSheet.create({
     image: {
         width: 50,
         height: 50,
+        borderRadius: 25,
     },
     formGroup: {
         marginTop: 30,
+    },
+    keyboardWrapper: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
     },
     errorInput: {
         borderWidth: 0,

@@ -1,10 +1,11 @@
 import React from 'react';
 import * as Permissions from 'expo-permissions';
+import PropTypes from 'prop-types';
 import { Camera } from 'expo-camera';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 
-class CameraComponent extends React.Component {
+class CameraScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -103,4 +104,8 @@ class CameraComponent extends React.Component {
     }
 }
 
-export default CameraComponent;
+CameraScreen.propTypes = {
+    navigation: PropTypes.object.isRequired,
+};
+
+export default CameraScreen;
