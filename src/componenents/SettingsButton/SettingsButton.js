@@ -12,7 +12,7 @@ const SettingButton = ({
             name,
             photo,
             phoneNumber,
-            onPress: edit,
+            onPress: (newname, newphoneNumber, newphoto) => edit(newname, newphoneNumber, newphoto),
         })}
     >
         <Icon style={styles.icon} size={25} name="settings" />
@@ -21,10 +21,15 @@ const SettingButton = ({
 
 SettingButton.propTypes = {
     name: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
-    phoneNumber: PropTypes.string.isRequired,
+    photo: PropTypes.string,
+    phoneNumber: PropTypes.string,
     navigation: PropTypes.object.isRequired,
     edit: PropTypes.func.isRequired,
+};
+
+SettingButton.defaultProps = {
+    photo: '',
+    phoneNumber: '',
 };
 
 export default SettingButton;
