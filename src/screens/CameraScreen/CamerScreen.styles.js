@@ -4,17 +4,14 @@ import { Colors } from '../../resources/resources';
 export default StyleSheet.create({
     cameraContainer: {
         flex: 1,
+        width: '100%',
     },
     cameraWrapper: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-end',
         padding: 15,
         paddingBottom: 30,
-    },
-    flip: {
-        justifyContent: 'flex-end',
-        alignSelf: 'flex-end',
     },
     snapContainer: {
         alignSelf: 'center',
