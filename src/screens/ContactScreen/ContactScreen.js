@@ -18,6 +18,7 @@ class ContactScreen extends Component {
     constructor(props) {
         super(props);
         this.addContact = this.addContact.bind(this);
+        this.edit = this.edit.bind(this);
         this.state = {
             contactList: [],
             filteredContactList: [],
@@ -88,6 +89,7 @@ class ContactScreen extends Component {
                                     phoneNumber={item.phoneNumber}
                                     photo={item.photo}
                                     navigation={this.props.navigation}
+                                    edit={this.edit}
                                 />
                             )}
                         />

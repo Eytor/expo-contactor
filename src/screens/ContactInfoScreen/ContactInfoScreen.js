@@ -42,12 +42,11 @@ class ContactInfoScreen extends Component {
 
     componentWillUnmount() {
         if (this.state.isEdited) {
-            // call update in main screen
+            this.props.navigation.state.edit(this.state.id, this.state.name, this.state.photo, this.state.phoneNumber);
         }
     }
 
     saveContact(name, phoneNumber, photo) {
-        console.log('editing ', name);
         this.setState({
             name,
             phoneNumber,
