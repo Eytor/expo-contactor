@@ -41,7 +41,7 @@ export default class ImportButton extends Component {
     render() {
         return (
             <TouchableOpacity
-                style={defaultStyles.successButton}
+                style={[defaultStyles.successButton, { marginBottom: 15 }]}
                 onPress={() => this.AlertUser()}
             >
                 <Icon name="import-contacts" color="#FFF" size={25} />

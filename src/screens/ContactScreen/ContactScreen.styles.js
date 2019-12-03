@@ -29,9 +29,10 @@ export default StyleSheet.create({
         color: '#fff',
     },
     noContacts: {
-        color: '#fff',
-        fontSize: 24,
-        fontWeight: 'bold',
-        textAlign: 'center',
+        color: Colors.gray,
+        fontSize: 16,
+        fontWeight: '300',
+        textAlign: 'left',
+        marginTop: 15,
     },
 });

@@ -122,21 +122,23 @@ class ContactScreen extends Component {
                         </View>
                     )}
                 </ScrollView>
-                <ImportButton
-                    firstAvailableId={parseInt(this.state.firstAvailableId, 10)}
-                    refresh={this.refreshContacts}
-                />
-                <TouchableOpacity
-                    style={defaultStyles.successButton}
-                    onPress={() => this.props.navigation.navigate('Form', {
-                        name: '',
-                        photo: '',
-                        phoneNumber: '',
-                        onPress: this.addContact,
-                    })}
-                >
-                    <Icon style={styles.icon} size={25} name="plus" />
-                </TouchableOpacity>
+                <View style={{ position: 'absolute', right: 15, bottom: 15 }}>
+                    <ImportButton
+                        firstAvailableId={parseInt(this.state.firstAvailableId, 10)}
+                        refresh={this.refreshContacts}
+                    />
+                    <TouchableOpacity
+                        style={defaultStyles.successButton}
+                        onPress={() => this.props.navigation.navigate('Form', {
+                            name: '',
+                            photo: '',
+                            phoneNumber: '',
+                            onPress: this.addContact,
+                        })}
+                    >
+                        <Icon style={styles.icon} size={25} name="plus" />
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
