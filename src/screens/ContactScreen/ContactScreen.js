@@ -56,12 +56,10 @@ class ContactScreen extends Component {
         const { filteredContactList } = this.state;
         return (
             <View style={defaultStyles.container}>
-                {filteredContactList.length !== 0 && (
-                    <FilterElement
-                        filter={(text) => this.filterContacts(text)}
-                        label="Contacts"
-                    />
-                )}
+                <FilterElement
+                    filter={(text) => this.filterContacts(text)}
+                    label="Contacts"
+                />
                 <ScrollView>
                     {filteredContactList.length !== 0 ? (
                         <FlatList
