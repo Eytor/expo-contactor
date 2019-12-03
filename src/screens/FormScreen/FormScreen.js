@@ -17,16 +17,18 @@ class Form extends Component {
         this.setPhoto = this.setPhoto.bind(this);
         this.state = {
             name: null,
-            phonenumber: null,
+            phoneNumber: null,
             photo: null,
         };
     }
 
     componentWillMount() {
+        const { name, phoneNumber, photo } = this.props.navigation.state.params;
+        console.log(this.props.navigation.state.params);
         this.setState({
-            name: this.props.name,
-            phonenumber: this.props.phonenumber,
-            photo: this.props.photo,
+            name,
+            phoneNumber,
+            photo,
         });
     }
 
@@ -36,6 +38,7 @@ class Form extends Component {
 
     submit(name, phoneNumber, photo) {
         const { onPress } = this.props.navigation.state.params;
+        console.log(onPress);
         this.props.navigation.pop();
         onPress(name, phoneNumber, photo);
     }
@@ -72,15 +75,15 @@ class Form extends Component {
                     <TextInput
                         placeholder="Phone number"
                         style={[defaultStyles.input, styles.input]}
-                        value={this.state.phonenumber}
+                        value={this.state.phoneNumber}
                         keyboardType="numeric"
-                        onChangeText={(phonenumber) => this.setState({ phonenumber })}
+                        onChangeText={(phoneNumber) => this.setState({ phoneNumber })}
                     />
                 </View>
                 <TouchableOpacity
                     // style={styles.addContactButton}
                     onPress={() => {
-                        this.submit(this.state.name, this.state.photo, this.state.phonenumber);
+                        this.submit(this.state.name, this.state.photo, this.state.phoneNumber);
                     }}
                 >
                     <Text style={styles.btnText}>Add item!</Text>
@@ -91,16 +94,7 @@ class Form extends Component {
 }
 
 Form.propTypes = {
-    name: PropTypes.string,
-    phonenumber: PropTypes.string,
-    photo: PropTypes.string,
     navigation: PropTypes.object.isRequired,
-};
-
-Form.defaultProps = {
-    name: '',
-    phonenumber: '',
-    photo: '',
 };
 
 export default Form;
