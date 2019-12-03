@@ -7,6 +7,7 @@ export default StyleSheet.create({
         width: '100%',
         backgroundColor: Colors.background,
         padding: 15,
+        paddingBottom: 0,
         position: 'relative',
     },
     wrapper: {
