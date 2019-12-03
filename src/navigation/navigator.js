@@ -2,6 +2,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Form from '../screens/FormScreen/FormScreen';
 import { Colors } from '../resources/resources';
 import ContactScreen from '../screens/ContactScreen/ContactScreen';
+import CameraComponent from '../componenents/CameraComponent/CameraComponent';
 import ContactInfoScreen from '../screens/ContactInfoScreen/ContactInfoScreen';
 
 const AppNavigator = createStackNavigator(
@@ -24,6 +25,9 @@ const AppNavigator = createStackNavigator(
                     elevation: 0,
                 },
             }),
+        },
+        Camera: {
+            screen: CameraComponent,
         },
         ContactInfo: {
             screen: ContactInfoScreen,

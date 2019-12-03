@@ -11,7 +11,7 @@ const ImageElement = ({
         {photo ? (
             <Image
                 style={styles.image}
-                source={{ uri: photo }}
+                source={{ uri: `data:image/png;base64,${photo}` }}
             />
 
         ) : (

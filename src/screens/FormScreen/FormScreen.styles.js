@@ -6,4 +6,10 @@ export default StyleSheet.create({
         padding: 5,
         marginBottom: 15,
     },
+    image: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        marginRight: 15,
+    },
 });

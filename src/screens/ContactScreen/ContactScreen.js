@@ -34,7 +34,13 @@ class ContactScreen extends Component {
 
     addContact(name, photo, phoneNumber) {
         const { contactList } = this.state;
-        const newContact = { name, photo, phoneNumber };
+        let id = 1;
+        if (contactList.length > 0) {
+            id = contactList[contactList.length - 1].id + 1;
+        }
+        const newContact = {
+            id, name, photo, phoneNumber,
+        };
         const newContacts = [...contactList];
         newContacts.push(newContact);
         this.setState({ contactList: newContacts }, () => {

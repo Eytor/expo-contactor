@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './ContactElement.styles';
 
 const ContactElement = ({
-    name, photo, phoneNumber, navigation,
+    name, photo, phoneNumber, navigation, id,
 }) => (
     <TouchableOpacity
         style={styles.flatlistItem}
@@ -14,10 +14,11 @@ const ContactElement = ({
             name,
             photo,
             phoneNumber,
+            id,
         })}
     >
         {photo ? (
-            <Image style={styles.image} source={{ uri: photo }} />
+            <Image style={styles.image} source={{ uri: `data:image/png;base64,${photo}` }} />
         ) : (
             <Icon
                 style={styles.image}
@@ -36,6 +37,7 @@ ContactElement.propTypes = {
     phoneNumber: PropTypes.string,
     photo: PropTypes.string,
     navigation: PropTypes.object.isRequired,
+    id: PropTypes.number.isRequired,
 };
 ContactElement.defaultProps = {
     phoneNumber: '',

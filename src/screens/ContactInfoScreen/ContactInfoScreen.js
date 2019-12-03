@@ -11,10 +11,57 @@ import defaultStyles from '../../resources/defaultStyles';
 import styles from './ContactInfoScreen.styles';
 import ImageElement from '../../componenents/ImageElement/ImageElement';
 import SettingsButton from '../../componenents/SettingsButton/SettingsButton';
+import { editContact } from '../../services/service';
 
 class ContactInfoScreen extends Component {
+    constructor(props) {
+        super(props);
+        this.saveContact = this.saveContact.bind(this);
+        this.state = {
+            id: null,
+            oldName: '',
+            phoneNumber: null,
+            photo: '',
+            isEdited: false,
+            name: '',
+        };
+    }
+
+    componentWillMount() {
+        const {
+            name, phoneNumber, photo, id,
+        } = this.props.navigation.state.params;
+        this.setState({
+            oldName: name,
+            name,
+            phoneNumber,
+            photo,
+            id,
+        });
+    }
+
+    componentWillUnmount() {
+        if (this.state.isEdited) {
+            // call update in main screen
+        }
+    }
+
+    saveContact(name, phoneNumber, photo) {
+        console.log('editing ', name);
+        this.setState({
+            name,
+            phoneNumber,
+            photo,
+            isEdited: true,
+        }, () => editContact({
+            id: this.state.id, oldName: this.state.oldName, name, phoneNumber, photo,
+        }));
+    }
+
     render() {
-        const { name, phoneNumber, photo } = this.props.navigation.state.params;
+        const {
+            name, phoneNumber, photo,
+        } = this.state;
         return (
             <View style={[defaultStyles.container, styles.noPadVertical]}>
                 <View style={styles.wrapper}>
