@@ -9,7 +9,7 @@ export default StyleSheet.create({
         paddingVertical: 5,
         borderWidth: 0,
         borderBottomWidth: 1,
-        borderColor: Colors.mainBorder,
+        borderColor: Colors.arsenic,
     },
     image: {
         width: 50,
@@ -39,5 +39,11 @@ export default StyleSheet.create({
         width: 25,
         height: 25,
         color: '#fff',
+    },
+    noContacts: {
+        color: '#fff',
+        fontSize: 24,
+        fontWeight: 'bold',
+        textAlign: 'center',
     },
 });
