@@ -18,7 +18,6 @@ export default StyleSheet.create({
     image: {
         width: 50,
         height: 50,
-        borderRadius: 50,
     },
     formGroup: {
         marginTop: 30,
