@@ -78,7 +78,7 @@ class Form extends Component {
                                         <Image style={styles.image} source={{ uri: `data:image/png;base64,${photo}` }} />
                                     ) : (
                                         <AntIcon
-                                            style={styles.image}
+                                            style={styles.imageIcon}
                                             size={50}
                                             name="camera"
                                             color="#FFF"
@@ -87,8 +87,8 @@ class Form extends Component {
 
                                 </TouchableOpacity>
                             </View>
-                            <View style={styles.formGroup}>
-                                <View>
+                            <View>
+                                <View style={styles.formGroup}>
                                     <TextInput
                                         style={[defaultStyles.input, styles.input,
                                             !this.state.name && styles.errorInput]}
@@ -100,7 +100,7 @@ class Form extends Component {
                                         <Text style={styles.errorText}>Name is required</Text>
                                     )}
                                 </View>
-                                <View>
+                                <View style={styles.formGroup}>
                                     <TextInput
                                         placeholder="Phone number"
                                         style={[defaultStyles.input, styles.input,
@@ -124,7 +124,8 @@ class Form extends Component {
                         <TouchableOpacity
                             style={[defaultStyles.successButton,
                                 { marginRight: 15, marginBottom: 15 },
-                                (!this.state.name || !this.state.phoneNumber) ? { opacity: 0.5 } : { opacity: 1 }]}
+                                (!this.state.name || !this.state.phoneNumber)
+                                    ? { opacity: 0.5 } : { opacity: 1 }]}
                             disabled={(!this.state.name || !this.state.phoneNumber)}
                             onPress={() => {
                                 this.submit(this.state.name,
