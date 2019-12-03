@@ -9,7 +9,7 @@ import ImageElement from '../../componenents/ImageElement/ImageElement';
 import SettingsButton from '../../componenents/SettingsButton/SettingsButton';
 import { editContact } from '../../services/service';
 
-class ContactInfoScreen extends Component {
+class CameraScreen extends Component {
     constructor(props) {
         super(props);
         this.saveContact = this.saveContact.bind(this);
@@ -114,8 +114,8 @@ class ContactInfoScreen extends Component {
     }
 }
 
-ContactInfoScreen.propTypes = {
+CameraScreen.propTypes = {
     navigation: PropTypes.object.isRequired,
 };
 
-export default ContactInfoScreen;
+export default CameraScreen;

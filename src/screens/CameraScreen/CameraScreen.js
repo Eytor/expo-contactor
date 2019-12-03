@@ -22,11 +22,11 @@ class CameraComponent extends React.Component {
 
     snap = async () => {
         if (this.camera) {
-          let photo = await this.camera.takePictureAsync({base64: true});
-          this.props.navigation.state.params.savePhoto(photo.base64);
-          this.props.navigation.pop();
+            const photo = await this.camera.takePictureAsync({ base64: true });
+            this.props.navigation.state.params.savePhoto(photo.base64);
+            this.props.navigation.pop();
         }
-      };
+    };
 
     render() {
         const { hasCameraPermission } = this.state;
