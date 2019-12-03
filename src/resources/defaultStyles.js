@@ -7,6 +7,7 @@ export default StyleSheet.create({
         width: '100%',
         backgroundColor: Colors.background,
         padding: 15,
+        position: 'relative',
     },
     wrapper: {
         marginTop: 50,
@@ -33,11 +34,9 @@ export default StyleSheet.create({
     successButton: {
         justifyContent: 'center',
         alignItems: 'center',
+        alignSelf: 'flex-end',
         width: 60,
         height: 60,
-        position: 'absolute',
-        right: 15,
-        bottom: 15,
         borderRadius: 50,
         backgroundColor: Colors.success,
         zIndex: 100,

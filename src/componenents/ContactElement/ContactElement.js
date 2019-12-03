@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity, Image, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './ContactElement.styles';
+import { getRandomColor } from '../../resources/resources';
 
 const ContactElement = ({
     name, photo, phoneNumber, navigation, id,
@@ -21,7 +22,7 @@ const ContactElement = ({
             <Image style={styles.image} source={{ uri: `data:image/png;base64,${photo}` }} />
         ) : (
             <Icon
-                style={styles.image}
+                style={[styles.image, { backgroundColor: getRandomColor() }]}
                 size={50}
                 name="user-circle"
                 color="#FFF"

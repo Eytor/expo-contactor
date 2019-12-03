@@ -5,11 +5,12 @@ import {
     TouchableOpacity,
     Image,
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import PropTypes from 'prop-types';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './FormScreen.styles';
-import Colors from '../../resources/resources';
+
 
 class Form extends Component {
     constructor(probs) {
@@ -46,52 +47,59 @@ class Form extends Component {
         const { navigation } = this.props;
         const { photo } = this.state;
         return (
-            <View style={[defaultStyles.container, defaultStyles.noPadVertical]}>
-                <View style={defaultStyles.wrapper}>
-                    <View style={[defaultStyles.imageWrapper, styles.imageWrapper]}>
-                        <TouchableOpacity onPress={() => navigation.navigate('Camera', { savePhoto: this.setPhoto })}>
-                            {photo ? (
-                                <Image style={styles.image} source={{ uri: `data:image/png;base64,${photo}` }} />
-                            ) : (
-                                <AntIcon
-                                    style={styles.image}
-                                    size={50}
-                                    name="camera"
-                                    color="#FFF"
-                                />
-                            )}
+            <KeyboardAwareScrollView
+                enableOnAndroid
+                contentContainerStyle={{ flexGrow: 1 }}
+            >
+                <View style={[defaultStyles.container, defaultStyles.noPadVertical]}>
+                    <View style={styles.keyboardWrapper}>
+                        <View style={defaultStyles.wrapper}>
+                            <View style={[defaultStyles.imageWrapper, styles.imageWrapper]}>
+                                <TouchableOpacity onPress={() => navigation.navigate('Camera', { savePhoto: this.setPhoto })}>
+                                    {photo ? (
+                                        <Image style={styles.image} source={{ uri: `data:image/png;base64,${photo}` }} />
+                                    ) : (
+                                        <AntIcon
+                                            style={styles.image}
+                                            size={50}
+                                            name="camera"
+                                            color="#FFF"
+                                        />
+                                    )}
 
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.formGroup}>
+                                <View>
+                                    <TextInput
+                                        style={[defaultStyles.input, styles.input]}
+                                        placeholder="Name"
+                                        value={this.state.name}
+                                        onChangeText={(name) => this.setState({ name })}
+                                    />
+                                </View>
+                                <View>
+                                    <TextInput
+                                        placeholder="Phone number"
+                                        style={[defaultStyles.input, styles.input]}
+                                        value={this.state.phoneNumber}
+                                        keyboardType="numeric"
+                                        onChangeText={(phoneNumber) => this.setState({ phoneNumber })}
+                                    />
+                                </View>
+                            </View>
+                        </View>
+                        <TouchableOpacity
+                            style={[defaultStyles.successButton, { marginRight: 15, marginBottom: 15 }]}
+                            onPress={() => {
+                                this.submit(this.state.name, this.state.phoneNumber, this.state.photo);
+                            }}
+                        >
+                            <AntIcon name="check" size={25} style={{ color: '#fff' }} />
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.formGroup}>
-                        <View>
-                            <TextInput
-                                style={[defaultStyles.input, styles.input]}
-                                placeholder="Name"
-                                value={this.state.name}
-                                onChangeText={(name) => this.setState({ name })}
-                            />
-                        </View>
-                        <View>
-                            <TextInput
-                                placeholder="Phone number"
-                                style={[defaultStyles.input, styles.input]}
-                                value={this.state.phoneNumber}
-                                keyboardType="numeric"
-                                onChangeText={(phoneNumber) => this.setState({ phoneNumber })}
-                            />
-                        </View>
-                    </View>
                 </View>
-                <TouchableOpacity
-                    style={defaultStyles.successButton}
-                    onPress={() => {
-                        this.submit(this.state.name, this.state.phoneNumber, this.state.photo);
-                    }}
-                >
-                    <AntIcon name="check" size={25} style={{ color: '#fff' }} />
-                </TouchableOpacity>
-            </View>
+            </KeyboardAwareScrollView>
         );
     }
 }
