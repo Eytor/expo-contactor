@@ -72,12 +72,10 @@ class ContactScreen extends Component {
         const { filteredContactList } = this.state;
         return (
             <View style={defaultStyles.container}>
-                {filteredContactList.length !== 0 && (
-                    <FilterElement
-                        filter={(text) => this.filterContacts(text)}
-                        label="Contacts"
-                    />
-                )}
+                <FilterElement
+                    filter={(text) => this.filterContacts(text)}
+                    label="Contacts"
+                />
                 <ScrollView>
                     {filteredContactList.length !== 0 ? (
                         <FlatList
@@ -100,7 +98,7 @@ class ContactScreen extends Component {
                     )}
                 </ScrollView>
                 <TouchableOpacity
-                    style={styles.addContactButton}
+                    style={defaultStyles.successButton}
                     // eslint-disable-next-line react/prop-types
                     onPress={() => this.props.navigation.navigate('Form', {
                         name: '',

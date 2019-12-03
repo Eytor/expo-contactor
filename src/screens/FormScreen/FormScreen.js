@@ -3,13 +3,13 @@ import {
     View,
     TextInput,
     TouchableOpacity,
-    Text,
     Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import AntIcon from 'react-native-vector-icons/AntDesign';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './FormScreen.styles';
+import Colors from '../../resources/resources';
 
 class Form extends Component {
     constructor(probs) {
@@ -46,45 +46,50 @@ class Form extends Component {
         const { navigation } = this.props;
         const { photo } = this.state;
         return (
-            <View style={defaultStyles.container}>
-                <TouchableOpacity onPress={() => navigation.navigate('Camera', { savePhoto: this.setPhoto })}>
-                    {photo ? (
-                        <Image style={styles.image} source={{ uri: `data:image/png;base64,${photo}` }} />
-                    ) : (
-                        <Icon
-                            style={styles.image}
-                            size={50}
-                            name="user-circle"
-                            color="#FFF"
-                        />
-                    )}
+            <View style={[defaultStyles.container, defaultStyles.noPadVertical]}>
+                <View style={defaultStyles.wrapper}>
+                    <View style={[defaultStyles.imageWrapper, styles.imageWrapper]}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Camera', { savePhoto: this.setPhoto })}>
+                            {photo ? (
+                                <Image style={styles.image} source={{ uri: `data:image/png;base64,${photo}` }} />
+                            ) : (
+                                <AntIcon
+                                    style={styles.image}
+                                    size={50}
+                                    name="camera"
+                                    color="#FFF"
+                                />
+                            )}
 
-                </TouchableOpacity>
-
-                <View>
-                    <TextInput
-                        style={[defaultStyles.input, styles.input]}
-                        placeholder="Name"
-                        value={this.state.name}
-                        onChangeText={(name) => this.setState({ name })}
-                    />
-                </View>
-                <View>
-                    <TextInput
-                        placeholder="Phone number"
-                        style={[defaultStyles.input, styles.input]}
-                        value={this.state.phoneNumber}
-                        keyboardType="numeric"
-                        onChangeText={(phoneNumber) => this.setState({ phoneNumber })}
-                    />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.formGroup}>
+                        <View>
+                            <TextInput
+                                style={[defaultStyles.input, styles.input]}
+                                placeholder="Name"
+                                value={this.state.name}
+                                onChangeText={(name) => this.setState({ name })}
+                            />
+                        </View>
+                        <View>
+                            <TextInput
+                                placeholder="Phone number"
+                                style={[defaultStyles.input, styles.input]}
+                                value={this.state.phoneNumber}
+                                keyboardType="numeric"
+                                onChangeText={(phoneNumber) => this.setState({ phoneNumber })}
+                            />
+                        </View>
+                    </View>
                 </View>
                 <TouchableOpacity
-                    // style={styles.addContactButton}
+                    style={defaultStyles.successButton}
                     onPress={() => {
                         this.submit(this.state.name, this.state.phoneNumber, this.state.photo);
                     }}
                 >
-                    <Text style={styles.btnText}>Add item!</Text>
+                    <AntIcon name="check" size={25} style={{ color: '#fff' }} />
                 </TouchableOpacity>
             </View>
         );
