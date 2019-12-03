@@ -3,8 +3,6 @@ import * as Permissions from 'expo-permissions';
 import PropTypes from 'prop-types';
 import { Camera } from 'expo-camera';
 import { Text, View, TouchableOpacity } from 'react-native';
-import AntIcon from 'react-native-vector-icons/AntDesign';
-import { SafeAreaView } from 'react-navigation';
 import styles from './CamerScreen.styles';
 
 class CameraScreen extends React.Component {
@@ -21,7 +19,19 @@ class CameraScreen extends React.Component {
         this.setState({
             hasCameraPermission: status === 'granted',
         });
+        this.props.navigation.setParams({
+            switchType: () => {
+                this.setState({
+                    type:
+                        this.state.type
+                            === Camera.Constants.Type.back
+                            ? Camera.Constants.Type.front
+                            : Camera.Constants.Type.back,
+                });
+            },
+        });
     }
+
 
     snap = async () => {
         if (this.camera) {
@@ -40,44 +50,27 @@ class CameraScreen extends React.Component {
             return <Text>No access to camera</Text>;
         }
         return (
-            <SafeAreaView style={{ flex: 1 }}>
-                <Camera
-                    style={styles.cameraContainer}
-                    ref={(ref) => {
-                        this.camera = ref;
-                    }}
-                    type={this.state.type}
-                >
-                    <View style={styles.cameraWrapper}>
-                        <View style={styles.flip}>
-                            <TouchableOpacity
-                                onPress={() => {
-                                    this.setState({
-                                        type:
-                                            this.state.type
-                                            === Camera.Constants.Type.back
-                                                ? Camera.Constants.Type.front
-                                                : Camera.Constants.Type.back,
-                                    });
-                                }}
-                            >
-                                <AntIcon name="retweet" size={25} style={{ color: '#fff'}} />
-                            </TouchableOpacity>
-                        </View>
-                        <View>
-                            <TouchableOpacity
-                                style={styles.snapContainer}
-                                onPress={this.snap}
-                            >
-                                <View style={styles.snapWrapper}>
-                                    <View style={styles.snapOuterBorder} />
-                                    <View style={styles.snapBtn} />
-                                </View>
-                            </TouchableOpacity>
-                        </View>
+            <Camera
+                style={styles.cameraContainer}
+                ref={(ref) => {
+                    this.camera = ref;
+                }}
+                type={this.state.type}
+            >
+                <View style={styles.cameraWrapper}>
+                    <View>
+                        <TouchableOpacity
+                            style={styles.snapContainer}
+                            onPress={this.snap}
+                        >
+                            <View style={styles.snapWrapper}>
+                                <View style={styles.snapOuterBorder} />
+                                <View style={styles.snapBtn} />
+                            </View>
+                        </TouchableOpacity>
                     </View>
-                </Camera>
-            </SafeAreaView>
+                </View>
+            </Camera>
         );
     }
 }

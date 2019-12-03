@@ -1,9 +1,13 @@
+import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
+import { View, TouchableOpacity } from 'react-native';
+import AntIcon from 'react-native-vector-icons/AntDesign';
 import Form from '../screens/FormScreen/FormScreen';
 import { Colors } from '../resources/resources';
 import ContactScreen from '../screens/ContactScreen/ContactScreen';
 import CameraScreen from '../screens/CameraScreen/CameraScreen';
 import ContactInfoScreen from '../screens/ContactInfoScreen/ContactInfoScreen';
+
 
 const AppNavigator = createStackNavigator(
     {
@@ -28,14 +32,14 @@ const AppNavigator = createStackNavigator(
         },
         Camera: {
             screen: CameraScreen,
-            navigationOptions: () => ({
+            navigationOptions: ({ navigation }) => ({
                 headerTitle: '',
                 headerTitleStyle: {
                     color: '#fff',
                     fontWeight: 'bold',
                 },
                 headerStyle: {
-                    backgroundColor: Colors.background,
+                    backgroundColor: 'transparent',
                     shadowColor: 'transparent',
                     shadowRadius: 0,
                     shadowOffset: {
@@ -43,7 +47,25 @@ const AppNavigator = createStackNavigator(
                     },
                     elevation: 0,
                 },
+                headerTransparent: {
+                    position: 'absolute',
+                    left: 0,
+                    top: 0,
+                    right: 0,
+                    zIndex: 100,
+                    backgroundColor: 'transparent',
+                },
                 headerTintColor: '#FFF',
+                headerRight: () => (
+                    <View>
+                        <TouchableOpacity onPress={navigation.state.params.switchType}>
+                            <AntIcon name="retweet" size={25} style={{ color: '#fff' }} />
+                        </TouchableOpacity>
+                    </View>
+                ),
+                headerRightContainerStyle: {
+                    marginRight: 15,
+                },
             }),
         },
         ContactInfo: {
