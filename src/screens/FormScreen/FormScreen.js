@@ -60,7 +60,7 @@ class Form extends Component {
                                         <Image style={styles.image} source={{ uri: `data:image/png;base64,${photo}` }} />
                                     ) : (
                                         <AntIcon
-                                            style={styles.image}
+                                            style={styles.imageIcon}
                                             size={50}
                                             name="camera"
                                             color="#FFF"

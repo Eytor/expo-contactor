@@ -16,6 +16,11 @@ export default StyleSheet.create({
         borderRadius: 50,
     },
     image: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+    },
+    imageIcon: {
         width: 50,
         height: 50,
         borderRadius: 25,
