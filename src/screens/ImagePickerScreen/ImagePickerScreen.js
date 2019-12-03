@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import {
-    Button, Image, View, Alert, TouchableOpacity, Text,
+    Image, View, Alert, TouchableOpacity,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
+import AntIcon from 'react-native-vector-icons/AntDesign';
 import defaultStyles from '../../resources/defaultStyles';
 
-class ImagePickerElement extends Component {
+class ImagePickerScreen extends Component {
     constructor(props) {
         super(props);
         this.submit = this.submit.bind(this);
@@ -55,21 +56,17 @@ class ImagePickerElement extends Component {
         const { image } = this.state;
 
         return (
-            <View style={[defaultStyles.container]}>
-                {/* <Button
-                    title="Pick an image from camera roll"
-                    onPress={this._pickImage}
-                /> */}
-                {image
-            && (
-                <View>
-                    <Image source={{ uri: `data:image/png;base64,${image}` }} style={{ width: 200, height: 200 }} />
-                    <TouchableOpacity onPress={this.submit}><Text>Submit</Text></TouchableOpacity>
-                </View>
-            )}
+            <View style={{ flex: 1, width: '100%' }}>
+                <Image style={{ flex: 1, width: '100%' }} source={{ uri: `data:image/png;base64,${image}` }} />
+                <TouchableOpacity
+                    style={[defaultStyles.successButton, { position: 'absolute', right: 15, bottom: 15 }]}
+                    onPress={() => this.submit()}
+                >
+                    <AntIcon name="check" size={25} style={{ color: '#fff' }} />
+                </TouchableOpacity>
             </View>
         );
     }
 }
 
-export default ImagePickerElement;
+export default ImagePickerScreen;
