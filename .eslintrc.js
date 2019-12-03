@@ -12,6 +12,7 @@ module.exports = {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -52,6 +53,7 @@ module.exports = {
     "react/prefer-stateless-function": 0,
     "global-require": 0,
     "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
-    "no-plusplus": 0
+    "no-plusplus": 0,
+    "no-invalid-this": 0
   },
 };
