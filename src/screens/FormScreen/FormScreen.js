@@ -5,6 +5,7 @@ import {
     TouchableOpacity,
     Image,
     Text,
+    Alert,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import PropTypes from 'prop-types';
@@ -16,6 +17,7 @@ class Form extends Component {
     constructor(probs) {
         super(probs);
         this.setPhoto = this.setPhoto.bind(this);
+        this.AlertSelector = this.AlertSelector.bind(this);
         this.state = {
             name: null,
             phoneNumber: null,
@@ -42,6 +44,22 @@ class Form extends Component {
         onPress(name, phoneNumber, photo);
     }
 
+    AlertSelector(navigation) {
+        // eslint-disable-next-line no-unused-expressions
+        Alert.alert('Add Image',
+            'Choose Alternative',
+            [
+                { text: 'Camera', onPress: () => navigation.navigate('Camera', { savePhoto: this.setPhoto }) },
+                { text: 'Choose from Gallery', onPress: () => navigation.navigate('ImagePicker', { savePhoto: this.setPhoto }) },
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+            ],
+            { cancelable: false });
+    }
+
 
     render() {
         const { navigation } = this.props;
@@ -55,12 +73,12 @@ class Form extends Component {
                     <View style={styles.keyboardWrapper}>
                         <View style={defaultStyles.wrapper}>
                             <View style={[defaultStyles.imageWrapper, styles.imageWrapper]}>
-                                <TouchableOpacity onPress={() => navigation.navigate('Camera', { savePhoto: this.setPhoto })}>
+                                <TouchableOpacity onPress={() => this.AlertSelector(navigation)}>
                                     {photo ? (
                                         <Image style={styles.image} source={{ uri: `data:image/png;base64,${photo}` }} />
                                     ) : (
                                         <AntIcon
-                                            style={styles.image}
+                                            style={styles.imageIcon}
                                             size={50}
                                             name="camera"
                                             color="#FFF"
@@ -69,8 +87,8 @@ class Form extends Component {
 
                                 </TouchableOpacity>
                             </View>
-                            <View style={styles.formGroup}>
-                                <View>
+                            <View>
+                                <View style={styles.formGroup}>
                                     <TextInput
                                         style={[defaultStyles.input, styles.input,
                                             !this.state.name && styles.errorInput]}
@@ -82,7 +100,7 @@ class Form extends Component {
                                         <Text style={styles.errorText}>Name is required</Text>
                                     )}
                                 </View>
-                                <View>
+                                <View style={styles.formGroup}>
                                     <TextInput
                                         placeholder="Phone number"
                                         style={[defaultStyles.input, styles.input,

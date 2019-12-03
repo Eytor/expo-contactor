@@ -3,7 +3,7 @@ import * as Permissions from 'expo-permissions';
 import PropTypes from 'prop-types';
 import { Camera } from 'expo-camera';
 import { Text, View, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
+import styles from './CamerScreen.styles';
 
 class CameraScreen extends React.Component {
     constructor(props) {
@@ -19,7 +19,19 @@ class CameraScreen extends React.Component {
         this.setState({
             hasCameraPermission: status === 'granted',
         });
+        this.props.navigation.setParams({
+            switchType: () => {
+                this.setState({
+                    type:
+                        this.state.type
+                            === Camera.Constants.Type.back
+                            ? Camera.Constants.Type.front
+                            : Camera.Constants.Type.back,
+                });
+            },
+        });
     }
+
 
     snap = async () => {
         if (this.camera) {
@@ -38,68 +50,27 @@ class CameraScreen extends React.Component {
             return <Text>No access to camera</Text>;
         }
         return (
-            <SafeAreaView style={{ flex: 1 }}>
-                <Camera
-                    ref={(ref) => {
-                        this.camera = ref;
-                    }}
-                    style={{ flex: 1 }}
-                    type={this.state.type}
-                >
-                    <View
-                        style={{
-                            flex: 1,
-                            backgroundColor: 'transparent',
-                            flexDirection: 'row',
-                        }}
-                    >
+            <Camera
+                style={styles.cameraContainer}
+                ref={(ref) => {
+                    this.camera = ref;
+                }}
+                type={this.state.type}
+            >
+                <View style={styles.cameraWrapper}>
+                    <View>
                         <TouchableOpacity
-                            style={{
-                                flex: 1,
-                                alignSelf: 'flex-end',
-                                alignItems: 'center',
-                            }}
-                            onPress={() => {
-                                this.setState({
-                                    type:
-                                        this.state.type
-                                        === Camera.Constants.Type.back
-                                            ? Camera.Constants.Type.front
-                                            : Camera.Constants.Type.back,
-                                });
-                            }}
-                        >
-                            <Text
-                                style={{
-                                    fontSize: 18,
-                                    marginBottom: 10,
-                                    color: 'white',
-                                }}
-                            >
-                                Flip
-                            </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={{
-                                flex: 1,
-                                alignSelf: 'flex-end',
-                                alignItems: 'center',
-                            }}
+                            style={styles.snapContainer}
                             onPress={this.snap}
                         >
-                            <Text
-                                style={{
-                                    fontSize: 18,
-                                    marginBottom: 10,
-                                    color: 'white',
-                                }}
-                            >
-                                Take photo
-                            </Text>
+                            <View style={styles.snapWrapper}>
+                                <View style={styles.snapOuterBorder} />
+                                <View style={styles.snapBtn} />
+                            </View>
                         </TouchableOpacity>
                     </View>
-                </Camera>
-            </SafeAreaView>
+                </View>
+            </Camera>
         );
     }
 }
