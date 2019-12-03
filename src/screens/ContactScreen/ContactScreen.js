@@ -32,7 +32,7 @@ class ContactScreen extends Component {
         });
     }
 
-    addContact(name, photo, phoneNumber) {
+    addContact(name, phoneNumber, photo) {
         const { contactList } = this.state;
         let id = 1;
         if (contactList.length > 0) {
@@ -73,6 +73,7 @@ class ContactScreen extends Component {
                             keyExtractor={(item) => item.name}
                             renderItem={({ item }) => (
                                 <ContactElement
+                                    id={item.id}
                                     name={item.name}
                                     phoneNumber={item.phoneNumber}
                                     photo={item.photo}
