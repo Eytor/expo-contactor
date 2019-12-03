@@ -4,6 +4,7 @@ import {
     TextInput,
     TouchableOpacity,
     Image,
+    Text,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import AntIcon from 'react-native-vector-icons/AntDesign';
@@ -65,25 +66,35 @@ class Form extends Component {
                     <View style={styles.formGroup}>
                         <View>
                             <TextInput
-                                style={[defaultStyles.input, styles.input]}
+                                style={[defaultStyles.input, styles.input,
+                                    !this.state.name && styles.errorInput]}
                                 placeholder="Name"
                                 value={this.state.name}
                                 onChangeText={(name) => this.setState({ name })}
                             />
+                            {!this.state.name && (
+                                <Text style={styles.errorText}>Name is required</Text>
+                            )}
                         </View>
                         <View>
                             <TextInput
                                 placeholder="Phone number"
-                                style={[defaultStyles.input, styles.input]}
+                                style={[defaultStyles.input, styles.input,
+                                    !this.state.phoneNumber && styles.errorInput]}
                                 value={this.state.phoneNumber}
                                 keyboardType="numeric"
                                 onChangeText={(phoneNumber) => this.setState({ phoneNumber })}
                             />
+                            {!this.state.phoneNumber && (
+                                <Text style={styles.errorText}>Phone number is required</Text>
+                            )}
                         </View>
                     </View>
                 </View>
                 <TouchableOpacity
-                    style={defaultStyles.successButton}
+                    style={[defaultStyles.successButton,
+                        (!this.state.name || !this.state.phoneNumber) && { opacity: 0.5 }]}
+                    disabled={!this.state.name || !this.state.phoneNumber}
                     onPress={() => {
                         this.submit(this.state.name, this.state.phoneNumber, this.state.photo);
                     }}

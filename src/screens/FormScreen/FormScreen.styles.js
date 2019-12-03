@@ -22,4 +22,12 @@ export default StyleSheet.create({
     formGroup: {
         marginTop: 30,
     },
+    errorInput: {
+        borderWidth: 0,
+        borderBottomWidth: 1,
+        borderColor: Colors.error,
+    },
+    errorText: {
+        color: '#D62828',
+    },
 });

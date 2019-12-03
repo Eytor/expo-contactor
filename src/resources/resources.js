@@ -3,7 +3,7 @@ export const Colors = {
     arsenic: '#3F4045',
     success: '#008148',
     gray: '#909590',
-
+    error: '#D62828',
 };
 
 export const getRandomColor = () => {
