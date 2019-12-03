@@ -12,7 +12,7 @@ const SettingButton = ({
             name,
             photo,
             phoneNumber,
-            onPress: (newname, newphoneNumber, newphoto) => edit(newname, newphoneNumber, newphoto),
+            onPress: edit,
         })}
     >
         <Icon style={styles.icon} size={25} name="settings" />

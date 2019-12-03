@@ -24,7 +24,6 @@ class Form extends Component {
 
     componentWillMount() {
         const { name, phoneNumber, photo } = this.props.navigation.state.params;
-        console.log(this.props.navigation.state.params);
         this.setState({
             name,
             phoneNumber,
@@ -38,7 +37,6 @@ class Form extends Component {
 
     submit(name, phoneNumber, photo) {
         const { onPress } = this.props.navigation.state.params;
-        console.log(onPress);
         this.props.navigation.pop();
         onPress(name, phoneNumber, photo);
     }
@@ -83,7 +81,7 @@ class Form extends Component {
                 <TouchableOpacity
                     // style={styles.addContactButton}
                     onPress={() => {
-                        this.submit(this.state.name, this.state.photo, this.state.phoneNumber);
+                        this.submit(this.state.name, this.state.phoneNumber, this.state.photo);
                     }}
                 >
                     <Text style={styles.btnText}>Add item!</Text>

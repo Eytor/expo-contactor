@@ -85,6 +85,7 @@ class ContactInfoScreen extends Component {
                             phoneNumber={phoneNumber}
                             photo={photo}
                             navigation={this.props.navigation}
+                            edit={(newName, newPhone, NewPhoto) => this.saveContact(newName, newPhone, NewPhoto)}
                         />
                     </View>
                 </View>
