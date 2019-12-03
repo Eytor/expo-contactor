@@ -87,7 +87,7 @@ class ContactScreen extends Component {
                     )}
                 </ScrollView>
                 <TouchableOpacity
-                    style={styles.addContactButton}
+                    style={defaultStyles.successButton}
                     // eslint-disable-next-line react/prop-types
                     onPress={() => this.props.navigation.navigate('Form', {
                         name: '',

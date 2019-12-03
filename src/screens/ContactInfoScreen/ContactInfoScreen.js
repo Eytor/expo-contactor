@@ -63,9 +63,9 @@ class ContactInfoScreen extends Component {
             name, phoneNumber, photo,
         } = this.state;
         return (
-            <View style={[defaultStyles.container, styles.noPadVertical]}>
-                <View style={styles.wrapper}>
-                    <View style={styles.imageWrapper}>
+            <View style={[defaultStyles.container, defaultStyles.noPadVertical]}>
+                <View style={defaultStyles.wrapper}>
+                    <View style={defaultStyles.imageWrapper}>
                         <ImageElement photo={photo} />
                     </View>
                     <View style={styles.metaWrapper}>
