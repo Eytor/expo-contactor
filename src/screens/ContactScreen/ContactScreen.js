@@ -49,6 +49,16 @@ class ContactScreen extends Component {
         addContact(newContact);
     }
 
+    edit(id, name, photo, phoneNumber) {
+        const { contactList } = this.state;
+        let newContactList = [...contactList]
+        const index = newContactList.findIndex(i => i.id === id);
+        newContactList[index] = {
+            id, name, photo, phoneNumber,
+        };
+        this.setState({contactList: newContactList}, this.filterContacts(this.state.filterString));
+    }
+
     filterContacts(text) {
         const { contactList } = this.state;
         const newContacts = [...contactList].filter(
