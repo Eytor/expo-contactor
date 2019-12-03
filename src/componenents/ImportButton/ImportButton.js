@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Alert } from 'react-native';
 import * as Permissions from 'expo-permissions';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { getPhonesContacts } from '../../services/service';
+import defaultStyles from '../../resources/defaultStyles';
 
 export default class ImportButton extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-        };
+        this.state = {};
     }
 
     // eslint-disable-next-line class-methods-use-this
@@ -22,9 +23,29 @@ export default class ImportButton extends Component {
         }
     }
 
+    AlertUser() {
+        Alert.alert(
+            'Are you sure you want to import all contacts from phone',
+            null,
+            [
+                {
+                    text: 'No',
+                    style: 'cancel',
+                },
+                { text: 'Yes', onPress: () => this.importContacts() },
+            ],
+            { cancelable: false },
+        );
+    }
+
     render() {
         return (
-            <TouchableOpacity style={{ backgroundColor: 'purple' }} onPress={() => this.importContacts()}><Text>Import Contacts</Text></TouchableOpacity>
+            <TouchableOpacity
+                style={defaultStyles.successButton}
+                onPress={() => this.AlertUser()}
+            >
+                <Icon name="import-contacts" color="#FFF" size={25} />
+            </TouchableOpacity>
         );
     }
 }

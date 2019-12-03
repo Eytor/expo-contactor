@@ -96,10 +96,6 @@ class ContactScreen extends Component {
         const { filteredContactList } = this.state;
         return (
             <View style={defaultStyles.container}>
-                <ImportButton
-                    firstAvailableId={parseInt(this.state.firstAvailableId, 10)}
-                    refresh={this.refreshContacts}
-                />
                 <FilterElement
                     filter={(text) => this.filterContacts(text)}
                     label="Contacts"
@@ -126,9 +122,12 @@ class ContactScreen extends Component {
                         </View>
                     )}
                 </ScrollView>
+                <ImportButton
+                    firstAvailableId={parseInt(this.state.firstAvailableId, 10)}
+                    refresh={this.refreshContacts}
+                />
                 <TouchableOpacity
                     style={defaultStyles.successButton}
-                    // eslint-disable-next-line react/prop-types
                     onPress={() => this.props.navigation.navigate('Form', {
                         name: '',
                         photo: '',
