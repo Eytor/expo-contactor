@@ -26,7 +26,11 @@ const ImageElement = ({
 );
 
 ImageElement.propTypes = {
-    photo: PropTypes.string.isRequired,
+    photo: PropTypes.string,
+};
+
+ImageElement.defaultProps = {
+    photo: null,
 };
 
 export default ImageElement;

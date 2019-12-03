@@ -13,52 +13,72 @@ import FilterElement from '../../componenents/FilterElement/FilterElement';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './ContactScreen.styles';
 import { getAllContacts, addContact } from '../../services/service';
+import ImportButton from '../../componenents/ImportButton/ImportButton';
 
 class ContactScreen extends Component {
     constructor(props) {
         super(props);
         this.addContact = this.addContact.bind(this);
         this.edit = this.edit.bind(this);
+        this.refreshContacts = this.refreshContacts.bind(this);
         this.state = {
             contactList: [],
             filteredContactList: [],
             filterString: '',
+            firstAvailableId: 1,
         };
     }
 
     async componentWillMount() {
         // Get contacts
         getAllContacts().then((data) => {
-            this.setState({ contactList: data, filteredContactList: data });
+            if (data.length > 0) {
+                this.setState({
+                    contactList: data,
+                    filteredContactList: data,
+                    firstAvailableId: (data[data.length - 1].id + 1),
+                });
+            }
+        });
+    }
+
+    async refreshContacts() {
+        getAllContacts().then((data) => {
+            if (data.length > 0) {
+                this.setState({
+                    contactList: data,
+                    filteredContactList: data,
+                    firstAvailableId: (data[data.length - 1].id + 1),
+                });
+            }
         });
     }
 
     addContact(name, phoneNumber, photo) {
         const { contactList } = this.state;
-        let id = 1;
-        if (contactList.length > 0) {
-            id = contactList[contactList.length - 1].id + 1;
-        }
         const newContact = {
-            id, name, photo, phoneNumber,
+            id: this.state.firstAvailableId,
+            name,
+            photo,
+            phoneNumber,
         };
         const newContacts = [...contactList];
         newContacts.push(newContact);
-        this.setState({ contactList: newContacts }, () => {
+        this.setState({
+            contactList: newContacts,
+            firstAvailableId: (this.state.firstAvailableId + 1),
+        }, () => {
             this.filterContacts(this.state.filterString);
         });
         addContact(newContact);
     }
 
     edit(id, name, photo, phoneNumber) {
-        console.log('editing: ', name, phoneNumber);
         const newContactList = this.state.contactList;
         const index = newContactList.findIndex((i) => i.id === id);
-        console.log(index);
         newContactList[index] = {
             id, name, photo, phoneNumber,
         };
-        console.log(newContactList);
         this.setState({ contactList: newContactList },
             this.filterContacts(this.state.filterString));
     }
@@ -76,6 +96,10 @@ class ContactScreen extends Component {
         const { filteredContactList } = this.state;
         return (
             <View style={defaultStyles.container}>
+                <ImportButton
+                    firstAvailableId={parseInt(this.state.firstAvailableId, 10)}
+                    refresh={this.refreshContacts}
+                />
                 <FilterElement
                     filter={(text) => this.filterContacts(text)}
                     label="Contacts"
@@ -84,7 +108,7 @@ class ContactScreen extends Component {
                     {filteredContactList.length !== 0 ? (
                         <FlatList
                             data={filteredContactList.sort((a, b) => a.name.localeCompare(b.name))}
-                            keyExtractor={(item) => item.name}
+                            keyExtractor={(item) => item.id.toString()}
                             renderItem={({ item }) => (
                                 <ContactElement
                                     id={item.id}
