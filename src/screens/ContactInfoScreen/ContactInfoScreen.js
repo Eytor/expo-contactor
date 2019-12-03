@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Colors } from '../../resources/resources';
 import styles from './ContactInfoScreen.styles';
+import ImageElement from '../../componenents/ImageElement/ImageElement';
 import SettingsButton from '../../componenents/SettingsButton/SettingsButton';
 
 class ContactInfoScreen extends Component {
@@ -22,10 +23,7 @@ class ContactInfoScreen extends Component {
                     photo={photo}
                     navigation={this.props.navigation}
                 />
-                <Image
-                    style={styles.image}
-                    source={{ uri: photo }}
-                />
+                <ImageElement photo={photo} />
                 <Text style={styles.name}>{ name }</Text>
                 <TouchableOpacity style={styles.phoneWrapper} onPress={() => console.log('Calling ', name)}>
                     <Icon style={styles.icon} size={25} name="phone" color={Colors.success} />
