@@ -11,7 +11,6 @@ import AntIcon from 'react-native-vector-icons/AntDesign';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './FormScreen.styles';
 
-
 class Form extends Component {
     constructor(probs) {
         super(probs);

@@ -1,10 +1,11 @@
 import React from 'react';
 import * as Permissions from 'expo-permissions';
+import PropTypes from 'prop-types';
 import { Camera } from 'expo-camera';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 
-class CameraComponent extends React.Component {
+class CameraScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,11 +23,11 @@ class CameraComponent extends React.Component {
 
     snap = async () => {
         if (this.camera) {
-          let photo = await this.camera.takePictureAsync({base64: true});
-          this.props.navigation.state.params.savePhoto(photo.base64);
-          this.props.navigation.pop();
+            const photo = await this.camera.takePictureAsync({ base64: true });
+            this.props.navigation.state.params.savePhoto(photo.base64);
+            this.props.navigation.pop();
         }
-      };
+    };
 
     render() {
         const { hasCameraPermission } = this.state;
@@ -103,4 +104,8 @@ class CameraComponent extends React.Component {
     }
 }
 
-export default CameraComponent;
+CameraScreen.propTypes = {
+    navigation: PropTypes.object.isRequired,
+};
+
+export default CameraScreen;

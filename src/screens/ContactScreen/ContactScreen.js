@@ -18,6 +18,7 @@ class ContactScreen extends Component {
     constructor(props) {
         super(props);
         this.addContact = this.addContact.bind(this);
+        this.edit = this.edit.bind(this);
         this.state = {
             contactList: [],
             filteredContactList: [],
@@ -49,6 +50,19 @@ class ContactScreen extends Component {
         addContact(newContact);
     }
 
+    edit(id, name, photo, phoneNumber) {
+        console.log('editing: ', name, phoneNumber);
+        const newContactList = this.state.contactList;
+        const index = newContactList.findIndex((i) => i.id === id);
+        console.log(index);
+        newContactList[index] = {
+            id, name, photo, phoneNumber,
+        };
+        console.log(newContactList);
+        this.setState({ contactList: newContactList },
+            this.filterContacts(this.state.filterString));
+    }
+
     filterContacts(text) {
         const { contactList } = this.state;
         const newContacts = [...contactList].filter(
@@ -78,6 +92,7 @@ class ContactScreen extends Component {
                                     phoneNumber={item.phoneNumber}
                                     photo={item.photo}
                                     navigation={this.props.navigation}
+                                    edit={this.edit}
                                 />
                             )}
                         />

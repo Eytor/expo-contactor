@@ -6,7 +6,7 @@ import styles from './ContactElement.styles';
 import { getRandomColor } from '../../resources/resources';
 
 const ContactElement = ({
-    name, photo, phoneNumber, navigation, id,
+    name, photo, phoneNumber, navigation, id, edit,
 }) => (
     <TouchableOpacity
         style={styles.flatlistItem}
@@ -16,6 +16,7 @@ const ContactElement = ({
             photo,
             phoneNumber,
             id,
+            edit,
         })}
     >
         {photo ? (
@@ -39,6 +40,7 @@ ContactElement.propTypes = {
     photo: PropTypes.string,
     navigation: PropTypes.object.isRequired,
     id: PropTypes.number.isRequired,
+    edit: PropTypes.func.isRequired,
 };
 ContactElement.defaultProps = {
     phoneNumber: '',
