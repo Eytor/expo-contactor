@@ -4,6 +4,7 @@ import {
     View,
     ScrollView,
     TouchableOpacity,
+    Text,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import PropTypes from 'prop-types';
@@ -55,23 +56,31 @@ class ContactScreen extends Component {
         const { filteredContactList } = this.state;
         return (
             <View style={defaultStyles.container}>
-                <FilterElement
-                    filter={(text) => this.filterContacts(text)}
-                    label="Contacts"
-                />
-                <ScrollView>
-                    <FlatList
-                        data={filteredContactList.sort((a, b) => a.name.localeCompare(b.name))}
-                        keyExtractor={(item) => item.name}
-                        renderItem={({ item }) => (
-                            <ContactElement
-                                name={item.name}
-                                phoneNumber={item.phoneNumber}
-                                photo={item.photo}
-                                navigation={this.props.navigation}
-                            />
-                        )}
+                {filteredContactList.length !== 0 && (
+                    <FilterElement
+                        filter={(text) => this.filterContacts(text)}
+                        label="Contacts"
                     />
+                )}
+                <ScrollView>
+                    {filteredContactList.length !== 0 ? (
+                        <FlatList
+                            data={filteredContactList.sort((a, b) => a.name.localeCompare(b.name))}
+                            keyExtractor={(item) => item.name}
+                            renderItem={({ item }) => (
+                                <ContactElement
+                                    name={item.name}
+                                    phoneNumber={item.phoneNumber}
+                                    photo={item.photo}
+                                    navigation={this.props.navigation}
+                                />
+                            )}
+                        />
+                    ) : (
+                        <View>
+                            <Text style={styles.noContacts}>No contacts found!</Text>
+                        </View>
+                    )}
                 </ScrollView>
                 <TouchableOpacity
                     style={styles.addContactButton}

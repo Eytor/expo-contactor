@@ -10,6 +10,6 @@ export default StyleSheet.create({
         color: '#fff',
         borderWidth: 0,
         borderBottomWidth: 1,
-        borderColor: Colors.mainBorder,
+        borderColor: Colors.arsenic,
     },
 });
