@@ -2,32 +2,46 @@ import { StyleSheet } from 'react-native';
 import { Colors } from '../../resources/resources';
 
 export default StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: Colors.background,
-        alignItems: 'center',
-        justifyContent: 'center',
+    wrapper: {
+        marginTop: 50,
+        backgroundColor: Colors.arsenic,
+        borderRadius: 30,
+        padding: 30,
+        position: 'relative',
     },
-    image: {
-        width: 200,
-        height: 200,
-        borderRadius: 100,
+    noPadVertical: {
+        paddingVertical: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+    },
+    imageWrapper: {
+        width: 100,
+        height: 100,
+        position: 'absolute',
+        top: -50,
+        justifyContent: 'center',
+        alignSelf: 'center',
     },
     name: {
-        fontSize: 28,
-        fontWeight: 'bold',
+        marginTop: 30,
+        marginBottom: 15,
+        fontSize: 20,
         color: '#fff',
+        fontWeight: '500',
+        textAlign: 'center',
     },
     phoneNumber: {
-        fontSize: 25,
-        fontWeight: 'normal',
-        color: '#fff',
+        color: Colors.gray,
+        fontSize: 14,
+        fontWeight: '400',
+        textAlign: 'center',
     },
-    phoneWrapper: {
+    metaWrapper: {
+        justifyContent: 'center',
+        marginBottom: 30,
+    },
+    buttonWrapper: {
         flexDirection: 'row',
-    },
-    icon: {
-        paddingRight: 10,
-        paddingTop: 6,
+        justifyContent: 'space-around',
     },
 });

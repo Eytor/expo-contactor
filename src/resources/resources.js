@@ -1,7 +1,8 @@
 export const Colors = {
     background: '#30292F',
-    mainBorder: '#3F4045',
+    arsenic: '#3F4045',
     success: '#008148',
+    gray: '#909590',
 
 };
 

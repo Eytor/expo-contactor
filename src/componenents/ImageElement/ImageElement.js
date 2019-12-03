@@ -17,7 +17,7 @@ const ImageElement = ({
         ) : (
             <Icon
                 styles={styles.image}
-                size={150}
+                size={100}
                 name="user-circle"
                 color="#FFF"
             />
