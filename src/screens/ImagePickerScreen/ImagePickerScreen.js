@@ -5,7 +5,8 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
-import AntIcon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/AntDesign';
+import PropTypes from 'prop-types';
 import defaultStyles from '../../resources/defaultStyles';
 
 class ImagePickerScreen extends Component {
@@ -40,8 +41,6 @@ class ImagePickerScreen extends Component {
             base64: true,
         });
 
-        console.log(result);
-
         if (!result.cancelled) {
             this.setState({ image: result.base64 });
         }
@@ -62,11 +61,15 @@ class ImagePickerScreen extends Component {
                     style={[defaultStyles.successButton, { position: 'absolute', right: 15, bottom: 15 }]}
                     onPress={() => this.submit()}
                 >
-                    <AntIcon name="check" size={25} style={{ color: '#fff' }} />
+                    <Icon name="check" size={25} style={{ color: '#fff' }} />
                 </TouchableOpacity>
             </View>
         );
     }
 }
+
+ImagePickerScreen.propTypes = {
+    navigation: PropTypes.object.isRequired,
+};
 
 export default ImagePickerScreen;

@@ -54,6 +54,7 @@ module.exports = {
     "global-require": 0,
     "no-unused-expressions": ["error", { "allowShortCircuit": true, "allowTernary": true }],
     "no-plusplus": 0,
-    "no-invalid-this": 0
+    "no-invalid-this": 0,
+    "no-underscore-dangle": 0,
   },
 };

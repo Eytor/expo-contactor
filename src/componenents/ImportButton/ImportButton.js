@@ -12,7 +12,6 @@ export default class ImportButton extends Component {
         this.state = {};
     }
 
-    // eslint-disable-next-line class-methods-use-this
     async importContacts() {
         const { firstAvailableId, refresh } = this.props;
         const { status } = await Permissions.askAsync(Permissions.CONTACTS);

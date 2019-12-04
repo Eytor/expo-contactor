@@ -8,7 +8,7 @@ import {
     TouchableOpacity,
     Image,
 } from 'react-native';
-import AntIcon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/AntDesign';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './CamerScreen.styles';
 
@@ -60,7 +60,6 @@ class CameraScreen extends React.Component {
     }
 
     returnImage() {
-        console.log('returning image');
         const { state, pop } = this.props.navigation;
         state.params.savePhoto(this.state.image);
         pop();
@@ -82,7 +81,7 @@ class CameraScreen extends React.Component {
                         style={[defaultStyles.successButton, { position: 'absolute', right: 15, bottom: 15 }]}
                         onPress={() => this.returnImage()}
                     >
-                        <AntIcon name="check" size={25} style={{ color: '#fff' }} />
+                        <Icon name="check" size={25} style={{ color: '#fff' }} />
                     </TouchableOpacity>
                 </View>
             );

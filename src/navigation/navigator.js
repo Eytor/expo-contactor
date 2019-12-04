@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import { View, TouchableOpacity } from 'react-native';
-import AntIcon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/AntDesign';
 import Form from '../screens/FormScreen/FormScreen';
 import { Colors } from '../resources/resources';
 import ImagePickerScreen from '../screens/ImagePickerScreen/ImagePickerScreen';
@@ -60,13 +60,13 @@ const AppNavigator = createStackNavigator(
                 headerRight: navigation.state.params.image ? () => (
                     <View>
                         <TouchableOpacity onPress={navigation.state.params.clearPhoto}>
-                            <AntIcon name="close" size={25} style={{ color: '#fff' }} />
+                            <Icon name="close" size={25} style={{ color: '#fff' }} />
                         </TouchableOpacity>
                     </View>
                 ) : () => (
                     <View>
                         <TouchableOpacity onPress={navigation.state.params.switchType}>
-                            <AntIcon name="retweet" size={25} style={{ color: '#fff' }} />
+                            <Icon name="retweet" size={25} style={{ color: '#fff' }} />
                         </TouchableOpacity>
                     </View>
                 ),

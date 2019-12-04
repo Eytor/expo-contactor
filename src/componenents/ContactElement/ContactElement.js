@@ -12,7 +12,6 @@ const ContactElement = ({
     return (
         <TouchableOpacity
             style={styles.flatlistItem}
-            // eslint-disable-next-line react/prop-types
             onPress={() => navigation.navigate('ContactInfo', {
                 name,
                 photo,

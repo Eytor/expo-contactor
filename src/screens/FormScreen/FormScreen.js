@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import PropTypes from 'prop-types';
-import AntIcon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/AntDesign';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './FormScreen.styles';
 
@@ -53,7 +53,6 @@ class Form extends Component {
                 { text: 'Choose from Gallery', onPress: () => navigation.navigate('ImagePicker', { savePhoto: this.setPhoto }) },
                 {
                     text: 'Cancel',
-                    onPress: () => console.log('Cancel Pressed'),
                     style: 'cancel',
                 },
             ],
@@ -77,7 +76,7 @@ class Form extends Component {
                                     {photo ? (
                                         <Image style={styles.image} source={{ uri: `data:image/png;base64,${photo}` }} />
                                     ) : (
-                                        <AntIcon
+                                        <Icon
                                             style={styles.imageIcon}
                                             size={50}
                                             name="camera"
@@ -133,7 +132,7 @@ class Form extends Component {
                                     this.state.photo);
                             }}
                         >
-                            <AntIcon name="check" size={25} style={{ color: '#fff' }} />
+                            <Icon name="check" size={25} style={{ color: '#fff' }} />
                         </TouchableOpacity>
                     </View>
                 </View>
