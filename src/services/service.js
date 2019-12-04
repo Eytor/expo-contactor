@@ -7,7 +7,8 @@ import { getRandomColor } from '../resources/resources';
  * Function that adds contact to file as <id>.json.
  *
  * @export
- * @param {*} contact
+ * @param {object} contact - an object of contact which has the properties id, name,
+ * phoneNumber, photo and background
  */
 export function addContact(contact) {
     const fileName = `${FileSystem.documentDirectory}${contact.id}.json`;
@@ -18,7 +19,8 @@ export function addContact(contact) {
  * Function that recieves a contact and overrides it's json file.
  *
  * @export
- * @param {*} contact
+ * @param {object} contact - an object of contact which has the properties id, name,
+ * phoneNumber, photo and background
  */
 export function editContact(contact) {
     const newFileName = `${FileSystem.documentDirectory}${contact.id}.json`;
@@ -37,7 +39,8 @@ export function editContact(contact) {
  * Unused function that deletes a contacts file.
  *
  * @export
- * @param {*} contact
+ * @param {object} contact - an object of contact which has the properties id, name,
+ * phoneNumber, photo and background
  */
 export function deleteContact(contact) {
     const fileName = `${FileSystem.documentDirectory + contact.id}.json`;
@@ -72,7 +75,7 @@ export async function getAllContacts() {
  * name and phone number and adds the contacts to the app
  *
  * @export
- * @param {*} firstAvailableId
+ * @param {number} firstAvailableId - first available id
  * @returns Promise
  */
 export async function getPhonesContacts(firstAvailableId) {
