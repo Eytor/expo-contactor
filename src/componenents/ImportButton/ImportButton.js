@@ -9,6 +9,8 @@ import defaultStyles from '../../resources/defaultStyles';
 export default class ImportButton extends Component {
     constructor(props) {
         super(props);
+        this.AlertUser = this.AlertUser.bind(this);
+        this.importContacts = this.importContacts.bind(this);
         this.state = {};
     }
 
@@ -31,7 +33,7 @@ export default class ImportButton extends Component {
                     text: 'No',
                     style: 'cancel',
                 },
-                { text: 'Yes', onPress: () => this.importContacts() },
+                { text: 'Yes', onPress: this.importContacts },
             ],
             { cancelable: false },
         );
@@ -41,7 +43,7 @@ export default class ImportButton extends Component {
         return (
             <TouchableOpacity
                 style={[defaultStyles.successButton, { marginBottom: 15 }]}
-                onPress={() => this.AlertUser()}
+                onPress={this.AlertUser}
             >
                 <Icon name="import-contacts" color="#FFF" size={25} />
             </TouchableOpacity>

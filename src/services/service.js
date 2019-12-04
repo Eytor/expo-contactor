@@ -2,14 +2,24 @@ import * as FileSystem from 'expo-file-system';
 import * as Contacts from 'expo-contacts';
 import { getRandomColor } from '../resources/resources';
 
-// readAsStringAsync - nær í mynd / texta
 
-// writeAsStringAsync - býr til mynd/texta
+/**
+ * Function that adds contact to file as <id>.json.
+ *
+ * @export
+ * @param {*} contact
+ */
 export function addContact(contact) {
     const fileName = `${FileSystem.documentDirectory}${contact.id}.json`;
     FileSystem.writeAsStringAsync(fileName, JSON.stringify(contact));
 }
 
+/**
+ * Function that recieves a contact and overrides it's json file.
+ *
+ * @export
+ * @param {*} contact
+ */
 export function editContact(contact) {
     const newFileName = `${FileSystem.documentDirectory}${contact.id}.json`;
     FileSystem.writeAsStringAsync(
@@ -23,11 +33,24 @@ export function editContact(contact) {
     );
 }
 
+/**
+ * Unused function that deletes a contacts file.
+ *
+ * @export
+ * @param {*} contact
+ */
 export function deleteContact(contact) {
     const fileName = `${FileSystem.documentDirectory + contact.id}.json`;
     FileSystem.deleteAsync(fileName);
 }
 
+
+/**
+ * Function that get's all saved contacts and returns it as array
+ *
+ * @export
+ * @returns Array of Contacts
+ */
 export async function getAllContacts() {
     const files = await FileSystem.readDirectoryAsync(
         `${FileSystem.documentDirectory}`,
@@ -42,6 +65,16 @@ export async function getAllContacts() {
     );
 }
 
+
+/**
+ * getPhoneContacts
+ * function that request all contacts from phone that have
+ * name and phone number and adds the contacts to the app
+ *
+ * @export
+ * @param {*} firstAvailableId
+ * @returns Promise
+ */
 export async function getPhonesContacts(firstAvailableId) {
     const { data } = await Contacts.getContactsAsync({
         fields: [Contacts.Fields.FirstName, Contacts.Fields.PhoneNumbers],
@@ -67,9 +100,3 @@ export async function getPhonesContacts(firstAvailableId) {
         }),
     );
 }
-
-// moveAsync
-
-// copyAsync
-
-// makeDirectoryAsync

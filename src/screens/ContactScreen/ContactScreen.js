@@ -21,6 +21,7 @@ class ContactScreen extends Component {
         super(props);
         this.addContact = this.addContact.bind(this);
         this.edit = this.edit.bind(this);
+        this.filterContacts = this.filterContacts.bind(this);
         this.refreshContacts = this.refreshContacts.bind(this);
         this.state = {
             contactList: [],
@@ -30,17 +31,9 @@ class ContactScreen extends Component {
         };
     }
 
-    async componentWillMount() {
+    componentWillMount() {
         // Get contacts
-        getAllContacts().then((data) => {
-            if (data.length > 0) {
-                this.setState({
-                    contactList: data,
-                    filteredContactList: data,
-                    firstAvailableId: (data[data.length - 1].id + 1),
-                });
-            }
-        });
+        this.refreshContacts();
     }
 
     async refreshContacts() {
@@ -100,7 +93,7 @@ class ContactScreen extends Component {
         return (
             <View style={defaultStyles.container}>
                 <FilterElement
-                    filter={(text) => this.filterContacts(text)}
+                    filter={this.filterContacts}
                     label="Contacts"
                 />
                 <ScrollView>
