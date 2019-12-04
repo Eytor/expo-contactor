@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import {
+    View,
+    Text,
+    TouchableOpacity,
+    Platform,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Linking } from 'expo';
 import { Colors } from '../../resources/resources';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './ContactInfoScreen.styles';
@@ -52,6 +58,11 @@ class ContactInfoScreen extends Component {
                 this.state.phoneNumber,
             );
         }
+    }
+
+    handleCall = () => {
+        const url = Platform.OS === 'ios' ? `tel://${this.state.phoneNumber}` : `tel:${this.state.phoneNumber}`;
+        Linking.openURL(url);
     }
 
     /**
@@ -109,7 +120,7 @@ class ContactInfoScreen extends Component {
                     <View style={styles.buttonWrapper}>
                         <TouchableOpacity
                             style={styles.phoneWrapper}
-                            onPress={() => console.log('Calling ', name)}
+                            onPress={this.handleCall}
                         >
                             <Icon
                                 style={styles.icon}
