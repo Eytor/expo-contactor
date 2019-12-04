@@ -10,6 +10,7 @@ export default StyleSheet.create({
         borderWidth: 0,
         borderBottomWidth: 1,
         borderColor: Colors.arsenic,
+        marginHorizontal: 15,
     },
     image: {
         width: 50,

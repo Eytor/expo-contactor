@@ -18,7 +18,7 @@ const AppNavigator = createStackNavigator(
                 headerTitle: 'Contacts',
                 headerTitleStyle: {
                     color: '#fff',
-                    fontWeight: 'bold',
+                    fontWeight: '400',
                 },
                 headerStyle: {
                     backgroundColor: Colors.background,
@@ -34,11 +34,6 @@ const AppNavigator = createStackNavigator(
         Camera: {
             screen: CameraScreen,
             navigationOptions: ({ navigation }) => ({
-                headerTitle: '',
-                headerTitleStyle: {
-                    color: '#fff',
-                    fontWeight: 'bold',
-                },
                 headerStyle: {
                     backgroundColor: 'transparent',
                     shadowColor: 'transparent',
@@ -78,11 +73,6 @@ const AppNavigator = createStackNavigator(
         ContactInfo: {
             screen: ContactInfoScreen,
             navigationOptions: () => ({
-                headerTitle: '',
-                headerTitleStyle: {
-                    color: '#fff',
-                    fontWeight: 'bold',
-                },
                 headerStyle: {
                     backgroundColor: Colors.background,
                     shadowColor: 'transparent',

@@ -121,7 +121,7 @@ class ContactScreen extends Component {
     render() {
         const { filteredContactList } = this.state;
         return (
-            <View style={defaultStyles.container}>
+            <View style={[defaultStyles.container, defaultStyles.noPadVertical]}>
                 <FilterElement
                     filter={this.filterContacts}
                     label="Contacts"
