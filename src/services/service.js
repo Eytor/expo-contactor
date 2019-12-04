@@ -112,7 +112,7 @@ export async function getPhonesContacts(firstAvailableId) {
  * on Android opens phone app with phone number
  *
  * @export
- * @param {number} phoneNumber
+ * @param {number} phoneNumber - phone number to call
  */
 export function handleCall(phoneNumber) {
     const url = Platform.OS === 'ios' ? `tel://${phoneNumber}` : `tel:${phoneNumber}`;
