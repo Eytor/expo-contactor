@@ -55,8 +55,8 @@ class ImagePickerScreen extends Component {
         const { image } = this.state;
 
         return (
-            <View style={{ flex: 1, width: '100%' }}>
-                <Image style={{ flex: 1, width: '100%' }} source={{ uri: `data:image/png;base64,${image}` }} />
+            <View style={[defaultStyles.container, defaultStyles.noPadVertical]}>
+                <Image resizeMode="contain" style={{ flex: 1, width: '100%' }} source={{ uri: `data:image/png;base64,${image}` }} />
                 <TouchableOpacity
                     style={[defaultStyles.successButton, { position: 'absolute', right: 15, bottom: 15 }]}
                     onPress={() => this.submit()}
