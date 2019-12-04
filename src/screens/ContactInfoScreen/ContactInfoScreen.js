@@ -64,7 +64,7 @@ class ContactInfoScreen extends Component {
      *
      * @param {string} name - new name of contact
      * @param {number} phoneNumber - new phone number of contact
-     * @param {string} photo - new photo of contact
+     * @param {string} photo - new photo of contact as base64 string
      * @memberof ContactInfoScreen
      */
     saveContact(name, phoneNumber, photo) {
