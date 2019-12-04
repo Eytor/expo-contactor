@@ -3,17 +3,15 @@ import {
     View,
     Text,
     TouchableOpacity,
-    Platform,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Linking } from 'expo';
 import { Colors } from '../../resources/resources';
 import defaultStyles from '../../resources/defaultStyles';
 import styles from './ContactInfoScreen.styles';
 import ImageElement from '../../componenents/ImageElement/ImageElement';
 import SettingsButton from '../../componenents/SettingsButton/SettingsButton';
-import { editContact } from '../../services/service';
+import { editContact, handleCall } from '../../services/service';
 
 class ContactInfoScreen extends Component {
     constructor(props) {
@@ -60,18 +58,13 @@ class ContactInfoScreen extends Component {
         }
     }
 
-    handleCall = () => {
-        const url = Platform.OS === 'ios' ? `tel://${this.state.phoneNumber}` : `tel:${this.state.phoneNumber}`;
-        Linking.openURL(url);
-    }
-
     /**
      * Function that saves the edited contact calls
      * the service to replace the corresponding json file
      *
      * @param {string} name - new name of contact
      * @param {number} phoneNumber - new phone number of contact
-     * @param {string} photo - new photo of contact
+     * @param {string} photo - new photo of contact as base64 string
      * @memberof ContactInfoScreen
      */
     saveContact(name, phoneNumber, photo) {
@@ -120,7 +113,7 @@ class ContactInfoScreen extends Component {
                     <View style={styles.buttonWrapper}>
                         <TouchableOpacity
                             style={styles.phoneWrapper}
-                            onPress={this.handleCall}
+                            onPress={() => handleCall(this.state.phoneNumber)}
                         >
                             <Icon
                                 style={styles.icon}
