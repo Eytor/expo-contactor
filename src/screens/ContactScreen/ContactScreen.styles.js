@@ -13,5 +13,6 @@ export default StyleSheet.create({
         fontWeight: '300',
         textAlign: 'left',
         marginTop: 15,
+        paddingLeft: 15,
     },
 });
