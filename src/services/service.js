@@ -1,5 +1,6 @@
 import * as FileSystem from 'expo-file-system';
 import * as Contacts from 'expo-contacts';
+import { getRandomColor } from '../resources/resources';
 
 // readAsStringAsync - nær í mynd / texta
 
@@ -10,8 +11,6 @@ export function addContact(contact) {
 }
 
 export function editContact(contact) {
-    const fileName = `${FileSystem.documentDirectory + contact.id}.json`;
-    FileSystem.deleteAsync(fileName);
     const newFileName = `${FileSystem.documentDirectory}${contact.id}.json`;
     FileSystem.writeAsStringAsync(
         newFileName,
@@ -57,6 +56,7 @@ export async function getPhonesContacts(firstAvailableId) {
                     name: `${contact.firstName ? contact.firstName : ''} ${contact.lastName ? contact.lastName : ''}`.trim(),
                     phoneNumber: contact.phoneNumbers[0].number,
                     photo: null,
+                    background: getRandomColor(),
                 };
                 const fileName = `${FileSystem.documentDirectory}${newContact.id}.json`;
                 await FileSystem.writeAsStringAsync(

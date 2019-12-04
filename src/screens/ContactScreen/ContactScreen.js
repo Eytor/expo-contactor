@@ -14,6 +14,7 @@ import defaultStyles from '../../resources/defaultStyles';
 import styles from './ContactScreen.styles';
 import { getAllContacts, addContact } from '../../services/service';
 import ImportButton from '../../componenents/ImportButton/ImportButton';
+import { getRandomColor } from '../../resources/resources';
 
 class ContactScreen extends Component {
     constructor(props) {
@@ -56,11 +57,13 @@ class ContactScreen extends Component {
 
     addContact(name, phoneNumber, photo) {
         const { contactList } = this.state;
+        const background = getRandomColor();
         const newContact = {
             id: this.state.firstAvailableId,
             name,
             photo,
             phoneNumber,
+            background,
         };
         const newContacts = [...contactList];
         newContacts.push(newContact);
@@ -113,6 +116,7 @@ class ContactScreen extends Component {
                                     photo={item.photo}
                                     navigation={this.props.navigation}
                                     edit={this.edit}
+                                    background={item.background}
                                 />
                             )}
                         />
