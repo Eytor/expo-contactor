@@ -30,17 +30,9 @@ class ContactScreen extends Component {
         };
     }
 
-    async componentWillMount() {
+    componentWillMount() {
         // Get contacts
-        getAllContacts().then((data) => {
-            if (data.length > 0) {
-                this.setState({
-                    contactList: data,
-                    filteredContactList: data,
-                    firstAvailableId: (data[data.length - 1].id + 1),
-                });
-            }
-        });
+        this.refreshContacts();
     }
 
     async refreshContacts() {
