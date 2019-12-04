@@ -30,36 +30,34 @@ class ContactElement extends Component {
         this.PanResponder = this.initalizePanResponder();
     }
 
-    initalizePanResponder = () => {
-        return PanResponder.create({
-            onStartShouldSetPanResponder: (evt, gestureState) => {
-                console.log('yes');
+    /**
+     * Function that handles swipes, used for swipe to call
+     *
+     * @memberof ContactElement
+     */
+    initalizePanResponder = () => PanResponder.create({
+        onStartShouldSetPanResponder: () => true,
+        onPanResponderMove: (evt, gestureState) => {
+            this.position.setValue({ x: gestureState.dx, y: 0 });
+        },
+        onPanResponderRelease: (evt, gestureState) => {
+            if (gestureState.dx > width / 3) {
+                handleCall(this.props.phoneNumber);
+            }
+            Animated.spring(this.position, {
+                toValue: this.state.defaultValue,
+                duration: 1000,
+            }).start();
+        },
+        onMoveShouldSetPanResponder: (evt, gestureState) => {
+            const { dx } = gestureState;
+            const dy = 0;
+            if (dx !== 0 && dy === 0) {
                 return true;
-            },
-            onPanResponderMove: (evt, gestureState) => {
-                console.log('moving');
-                this.position.setValue({ x: gestureState.dx, y: 0 });
-            },
-            onPanResponderRelease: (evt, gestureState) => {
-                if (gestureState.dx > (width / 3)) {
-                    handleCall(this.props.phoneNumber);
-                }
-                Animated.spring(this.position, {
-                    toValue: this.state.defaultValue,
-                    duration: 1000,
-
-                }).start();
-            },
-            onMoveShouldSetPanResponder: (evt, gestureState) => {
-                let dx = gestureState.dx;
-                let dy = 0;
-                if (dx != 0 && dy == 0) {
-                    return true;
-                }
-                return false;
-            },
-        });
-    }
+            }
+            return false;
+        },
+    });
 
     render() {
         const {
@@ -76,7 +74,12 @@ class ContactElement extends Component {
             <View style={styles.border}>
                 <Animated.View
                     {...this.PanResponder.panHandlers}
-                    style={{ transform: this.position.getTranslateTransform(), position: 'relative', zIndex: 10, backgroundColor: Colors.background }}
+                    style={{
+                        transform: this.position.getTranslateTransform(),
+                        position: 'relative',
+                        zIndex: 10,
+                        backgroundColor: Colors.background,
+                    }}
                 >
                     <TouchableOpacity
                         style={styles.flatlistItem}
@@ -92,16 +95,21 @@ class ContactElement extends Component {
                         {photo ? (
                             <Image
                                 style={styles.image}
-                                source={{ uri: `data:image/png;base64,${photo}` }}
+                                source={{
+                                    uri: `data:image/png;base64,${photo}`,
+                                }}
                             />
                         ) : (
-                                <Icon
-                                    style={[styles.image, { backgroundColor: background }]}
-                                    size={50}
-                                    name="user-circle"
-                                    color="#fff"
-                                />
-                            )}
+                            <Icon
+                                style={[
+                                    styles.image,
+                                    { backgroundColor: background },
+                                ]}
+                                size={50}
+                                name="user-circle"
+                                color="#fff"
+                            />
+                        )}
 
                         <Text style={styles.itemName}>{name}</Text>
                     </TouchableOpacity>
