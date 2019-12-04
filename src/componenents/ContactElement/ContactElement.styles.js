@@ -7,6 +7,9 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         paddingVertical: 5,
+    },
+    border: {
+        position: 'relative',
         borderWidth: 0,
         borderBottomWidth: 1,
         borderColor: Colors.arsenic,
@@ -24,4 +27,11 @@ export default StyleSheet.create({
         fontSize: 16,
         fontWeight: '300',
     },
+    underView: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        zIndex: 0,
+        marginHorizontal: 15,
+    }
 });

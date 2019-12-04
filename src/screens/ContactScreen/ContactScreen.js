@@ -140,14 +140,16 @@ class ContactScreen extends Component {
                                     navigation={this.props.navigation}
                                     edit={this.edit}
                                     background={item.background}
+                                    position={this.position}
+                                    panResponder={this.panResponder}
                                 />
                             )}
                         />
                     ) : (
-                        <View>
-                            <Text style={styles.noContacts}>No contacts found!</Text>
-                        </View>
-                    )}
+                            <View>
+                                <Text style={styles.noContacts}>No contacts found!</Text>
+                            </View>
+                        )}
                 </ScrollView>
                 <View style={{ position: 'absolute', right: 15, bottom: 15 }}>
                     <ImportButton
