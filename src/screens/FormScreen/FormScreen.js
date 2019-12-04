@@ -36,10 +36,9 @@ class Form extends Component {
     }
 
     /**
-     * setPhoto
-     * function that takes in the photo as base64 and adds it to the contact
+     * Function that takes in the photo as base64 and sets it to state.
      *
-     * @param {string} base64 - new photo of contact as base64 string
+     * @param {string} base64 - new photo
      * @memberof Form
      */
     setPhoto(base64) {
@@ -47,9 +46,8 @@ class Form extends Component {
     }
 
     /**
-     * submit
-     * function that submits the form with fields
-     * calls the passed in function onpress
+     * Function that submits the form with fields
+     * and calls the passed in function onpress to save it.
      *
      * @param {string} name - name of contact
      * @param {number} phoneNumber - phone number of Contact
@@ -63,10 +61,9 @@ class Form extends Component {
     }
 
     /**
-     * AlertSelector
-     * funtion that let you chose when adding photo to contact
-     * whether you want to take photo or using already
-     * existing photo.
+     * Funtion that let you choose when adding photo to contact
+     * whether you want to take a new photo or select already
+     * existing photo from Camera roll/Gallery.
      *
      * @param {object} navigation - navigation object
      * @memberof Form

@@ -15,8 +15,8 @@ export default class ImportButton extends Component {
     }
 
     /**
-     * importContacts
-     *
+     * function that calls a service to import all phone contacts
+     * and calls passed in function to refresh the contact list
      *
      * @memberof ImportButton
      */
@@ -31,7 +31,6 @@ export default class ImportButton extends Component {
     }
 
     /**
-     * AlertUser
      * function that asks you if you are sure you want to
      * import all your contacts.
      *

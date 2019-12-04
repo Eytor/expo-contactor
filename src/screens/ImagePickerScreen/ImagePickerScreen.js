@@ -33,8 +33,7 @@ class ImagePickerScreen extends Component {
 
 
     /**
-     * pickImage
-     * function that let you choose photo from phonegallery and stores
+     * Function that let you choose photo from phonegallery and stores
      * it as base64 string.
      *
      * @memberof ImagePickerScreen
@@ -54,8 +53,7 @@ class ImagePickerScreen extends Component {
     };
 
     /**
-     * submit
-     * function that submit the photo you chose from gallery
+     * Function that submit the photo you chose from gallery
      * and adds it to photo of contact.
      *
      * @memberof ImagePickerScreen
