@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TextInput } from 'react-native';
+import { View, TextInput } from 'react-native';
+import Icon from 'react-native-vector-icon/FontAwesome5';
 import styles from '../../resources/defaultStyles';
 
 const FilterElement = ({ filter, label }) => (
-    <TextInput placeholder={`Search ${label}`} style={styles.input} onChangeText={(text) => filter(text)} />
+    <View>
+        <Icon name="search" color="#FFF" />
+        <TextInput placeholder={`Search ${label}`} style={styles.input} onChangeText={(text) => filter(text)} />
+    </View>
 );
 
 FilterElement.propTypes = {
