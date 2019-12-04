@@ -18,6 +18,7 @@ class Form extends Component {
         super(probs);
         this.setPhoto = this.setPhoto.bind(this);
         this.AlertSelector = this.AlertSelector.bind(this);
+        this.submit = this.submit.bind(this);
         this.state = {
             name: null,
             phoneNumber: null,

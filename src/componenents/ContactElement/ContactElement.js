@@ -34,7 +34,7 @@ const ContactElement = ({
                 style={[styles.image, { backgroundColor: background }]}
                 size={50}
                 name="user-circle"
-                color="#FFF"
+                color="#fff"
             />
         )}
 
