@@ -73,7 +73,7 @@ class ImagePickerScreen extends Component {
                 <Image resizeMode="contain" style={{ flex: 1, width: '100%' }} source={{ uri: `data:image/png;base64,${image}` }} />
                 <TouchableOpacity
                     style={[defaultStyles.successButton, { position: 'absolute', right: 15, bottom: 15 }]}
-                    onPress={() => this.submit()}
+                    onPress={this.submit}
                 >
                     <Icon name="check" size={25} style={{ color: '#fff' }} />
                 </TouchableOpacity>
