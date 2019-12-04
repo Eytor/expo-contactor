@@ -35,16 +35,42 @@ class Form extends Component {
         });
     }
 
+    /**
+     * setPhoto
+     * function that takes in the photo as base64 and adds it to the contact
+     *
+     * @param {string} base64 - new photo of contact as base64 string
+     * @memberof Form
+     */
     setPhoto(base64) {
         this.setState({ photo: base64 });
     }
 
+    /**
+     * submit
+     * function that submits the form with fields
+     * calls the passed in function onpress
+     *
+     * @param {string} name
+     * @param {number} phoneNumber
+     * @param {string} photo - new photo
+     * @memberof Form
+     */
     submit(name, phoneNumber, photo) {
         const { onPress } = this.props.navigation.state.params;
         this.props.navigation.pop();
         onPress(name, phoneNumber, photo);
     }
 
+    /**
+     * AlertSelector
+     * funtion that let you chose when adding photo to contact
+     * whether you want to take photo or using already
+     * existing photo.
+     *
+     * @param {*} navigation
+     * @memberof Form
+     */
     AlertSelector(navigation) {
         // eslint-disable-next-line no-unused-expressions
         Alert.alert('Add Image',
