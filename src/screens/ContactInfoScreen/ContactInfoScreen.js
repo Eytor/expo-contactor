@@ -71,7 +71,7 @@ class ContactInfoScreen extends Component {
      *
      * @param {string} name - new name of contact
      * @param {number} phoneNumber - new phone number of contact
-     * @param {string} photo - new photo o contact
+     * @param {string} photo - new photo of contact
      * @memberof ContactInfoScreen
      */
     saveContact(name, phoneNumber, photo) {
@@ -134,11 +134,7 @@ class ContactInfoScreen extends Component {
                             phoneNumber={phoneNumber}
                             photo={photo}
                             navigation={this.props.navigation}
-                            edit={
-                                (newName, newPhone, NewPhoto) => this.saveContact(
-                                    newName, newPhone, NewPhoto,
-                                )
-                            }
+                            edit={this.saveContact}
                         />
                     </View>
                 </View>

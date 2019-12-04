@@ -32,6 +32,12 @@ class CameraScreen extends React.Component {
         this.updateHeader();
     }
 
+    /**
+     * Function that takes a photo from camera and adds it to state as base64 string
+     * and calls update header
+     *
+     * @memberof CameraScreen
+     */
     snap = async () => {
         if (this.camera) {
             const photo = await this.camera.takePictureAsync({ base64: true });
@@ -43,6 +49,12 @@ class CameraScreen extends React.Component {
         this.updateHeader();
     };
 
+    /**
+     * Function that updates header with whether it has a button
+     * that turns the camera around or discards image
+     *
+     * @memberof CameraScreen
+     */
     updateHeader = () => {
         this.props.navigation.setParams({
             switchType: () => {
@@ -59,6 +71,12 @@ class CameraScreen extends React.Component {
         });
     }
 
+    /**
+     * Function that pops the navigation stack and calls a
+     * passed in funtion to return the image to previous screen
+     *
+     * @memberof CameraScreen
+     */
     returnImage() {
         const { state, pop } = this.props.navigation;
         state.params.savePhoto(this.state.image);
@@ -79,7 +97,7 @@ class CameraScreen extends React.Component {
                     <Image style={{ flex: 1, width: '100%' }} source={{ uri: `data:image/png;base64,${this.state.image}` }} />
                     <TouchableOpacity
                         style={[defaultStyles.successButton, { position: 'absolute', right: 15, bottom: 15 }]}
-                        onPress={() => this.returnImage()}
+                        onPress={this.returnImage}
                     >
                         <Icon name="check" size={25} style={{ color: '#fff' }} />
                     </TouchableOpacity>

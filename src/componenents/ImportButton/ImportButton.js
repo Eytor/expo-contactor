@@ -14,6 +14,12 @@ export default class ImportButton extends Component {
         this.state = {};
     }
 
+    /**
+     * importContacts
+     *
+     *
+     * @memberof ImportButton
+     */
     async importContacts() {
         const { firstAvailableId, refresh } = this.props;
         const { status } = await Permissions.askAsync(Permissions.CONTACTS);
@@ -24,6 +30,13 @@ export default class ImportButton extends Component {
         }
     }
 
+    /**
+     * AlertUser
+     * function that asks you if you are sure you want to
+     * import all your contacts.
+     *
+     * @memberof ImportButton
+     */
     AlertUser() {
         Alert.alert(
             'Are you sure you want to import all contacts from phone',
