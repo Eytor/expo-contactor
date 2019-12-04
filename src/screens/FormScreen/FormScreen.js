@@ -35,18 +35,44 @@ class Form extends Component {
         });
     }
 
+    /**
+     * setPhoto
+     * function that takes in the photo as base64 and adds it to the contact
+     *
+     * @param {string} base64 - new photo of contact as base64 string
+     * @memberof Form
+     */
     setPhoto(base64) {
         this.setState({ photo: base64 });
     }
 
-    submit(name, phoneNumber, photo) {
+    /**
+     * submit
+     * function that submits the form with fields
+     * calls the passed in function onpress
+     *
+     * @param {string} name - name of contact
+     * @param {number} phoneNumber - phone number of Contact
+     * @param {string} photo - photo as base64
+     * @memberof Form
+     */
+    submit() {
         const { onPress } = this.props.navigation.state.params;
         this.props.navigation.pop();
-        onPress(name, phoneNumber, photo);
+        onPress(this.state.name, this.state.phoneNumber, this.state.photo);
     }
 
-    AlertSelector(navigation) {
-        // eslint-disable-next-line no-unused-expressions
+    /**
+     * AlertSelector
+     * funtion that let you chose when adding photo to contact
+     * whether you want to take photo or using already
+     * existing photo.
+     *
+     * @param {object} navigation - navigation object
+     * @memberof Form
+     */
+    AlertSelector() {
+        const { navigation } = this.props;
         Alert.alert('Add Image',
             'Choose Alternative',
             [
@@ -62,7 +88,6 @@ class Form extends Component {
 
 
     render() {
-        const { navigation } = this.props;
         const { photo } = this.state;
         return (
             <KeyboardAwareScrollView
@@ -73,7 +98,7 @@ class Form extends Component {
                     <View style={styles.keyboardWrapper}>
                         <View style={defaultStyles.wrapper}>
                             <View style={[defaultStyles.imageWrapper, styles.imageWrapper]}>
-                                <TouchableOpacity onPress={() => this.AlertSelector(navigation)}>
+                                <TouchableOpacity onPress={this.AlertSelector}>
                                     {photo ? (
                                         <Image style={styles.image} source={{ uri: `data:image/png;base64,${photo}` }} />
                                     ) : (
@@ -127,11 +152,7 @@ class Form extends Component {
                                 (!this.state.name || !this.state.phoneNumber)
                                     ? { opacity: 0.5 } : { opacity: 1 }]}
                             disabled={(!this.state.name || !this.state.phoneNumber)}
-                            onPress={() => {
-                                this.submit(this.state.name,
-                                    this.state.phoneNumber,
-                                    this.state.photo);
-                            }}
+                            onPress={this.submit}
                         >
                             <Icon name="check" size={25} style={{ color: '#fff' }} />
                         </TouchableOpacity>

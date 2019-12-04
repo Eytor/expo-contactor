@@ -32,6 +32,13 @@ class ImagePickerScreen extends Component {
     }
 
 
+    /**
+     * pickImage
+     * function that let you choose photo from phonegallery and stores
+     * it as base64 string.
+     *
+     * @memberof ImagePickerScreen
+     */
     _pickImage = async () => {
         const result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -46,6 +53,13 @@ class ImagePickerScreen extends Component {
         }
     };
 
+    /**
+     * submit
+     * function that submit the photo you chose from gallery
+     * and adds it to photo of contact.
+     *
+     * @memberof ImagePickerScreen
+     */
     submit() {
         this.props.navigation.state.params.savePhoto(this.state.image);
         this.props.navigation.pop();
@@ -59,7 +73,7 @@ class ImagePickerScreen extends Component {
                 <Image resizeMode="contain" style={{ flex: 1, width: '100%' }} source={{ uri: `data:image/png;base64,${image}` }} />
                 <TouchableOpacity
                     style={[defaultStyles.successButton, { position: 'absolute', right: 15, bottom: 15 }]}
-                    onPress={() => this.submit()}
+                    onPress={this.submit}
                 >
                     <Icon name="check" size={25} style={{ color: '#fff' }} />
                 </TouchableOpacity>
