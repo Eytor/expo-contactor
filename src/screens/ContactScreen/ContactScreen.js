@@ -85,12 +85,12 @@ class ContactScreen extends Component {
     }
 
     /**
-     * Function that edits user and calls service to replace the corresponding json file
+     * Function that updates the edited contact
      *
-     * @param {number} id - id of user
-     * @param {string} name - new name of user
-     * @param {string} photo - new photo for user in base64 string
-     * @param {number} phoneNumber - new phone number of user
+     * @param {number} id - id of contact
+     * @param {string} name - new name of contact
+     * @param {string} photo - new photo for contact in base64 string
+     * @param {number} phoneNumber - new phone number of contact
      * @memberof ContactScreen
      */
     edit(id, name, photo, phoneNumber) {
