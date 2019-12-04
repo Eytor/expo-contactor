@@ -35,6 +35,12 @@ class ContactScreen extends Component {
         this.refreshContacts();
     }
 
+    /**
+     * Function that calls function getAllContacts from service and
+     * sets it to state
+     *
+     * @memberof ContactScreen
+     */
     async refreshContacts() {
         getAllContacts().then((data) => {
             if (data.length > 0) {
@@ -47,6 +53,15 @@ class ContactScreen extends Component {
         });
     }
 
+    /**
+     * Function that accepts name, number and optional photo and creates the contact
+     * and calls the service to create the corresponding json file
+     *
+     * @param {string} name - name of new contact
+     * @param {number} phoneNumber - phone number of contact
+     * @param {string} [photo] - (optional) photo as base64 string
+     * @memberof ContactScreen
+     */
     addContact(name, phoneNumber, photo) {
         const { contactList } = this.state;
         const background = getRandomColor();
@@ -68,6 +83,15 @@ class ContactScreen extends Component {
         addContact(newContact);
     }
 
+    /**
+     * Function that edits user and calls service to replace the corresponding json file
+     *
+     * @param {number} id - id of user
+     * @param {string} name - new name of user
+     * @param {string} photo - new photo for user in base64 string
+     * @param {number} phoneNumber - new phone number of user
+     * @memberof ContactScreen
+     */
     edit(id, name, photo, phoneNumber) {
         const newContactList = this.state.contactList;
         const index = newContactList.findIndex((i) => i.id === id);
@@ -78,6 +102,12 @@ class ContactScreen extends Component {
             this.filterContacts(this.state.filterString));
     }
 
+    /**
+     * Function that filters contacts by input from user
+     *
+     * @param {string} text
+     * @memberof ContactScreen
+     */
     filterContacts(text) {
         const { contactList } = this.state;
         const newContacts = [...contactList].filter(
