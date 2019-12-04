@@ -46,9 +46,11 @@ export default StyleSheet.create({
     imageWrapper: {
         width: 100,
         height: 100,
+        borderRadius: 50,
         position: 'absolute',
         top: -50,
         justifyContent: 'center',
         alignSelf: 'center',
+        overflow: 'hidden',
     },
 });

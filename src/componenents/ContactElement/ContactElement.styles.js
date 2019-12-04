@@ -16,6 +16,7 @@ export default StyleSheet.create({
         height: 50,
         borderRadius: 25,
         marginRight: 15,
+        overflow: 'hidden',
     },
     itemName: {
         color: '#fff',

@@ -20,6 +20,7 @@ class ContactInfoScreen extends Component {
             photo: '',
             isEdited: false,
             name: '',
+            background: '#000',
         };
     }
 
@@ -29,6 +30,7 @@ class ContactInfoScreen extends Component {
             phoneNumber,
             photo,
             id,
+            background,
         } = this.props.navigation.state.params;
         this.setState({
             oldName: name,
@@ -36,6 +38,7 @@ class ContactInfoScreen extends Component {
             phoneNumber,
             photo,
             id,
+            background,
         });
     }
 
@@ -69,13 +72,18 @@ class ContactInfoScreen extends Component {
     }
 
     render() {
-        const { name, phoneNumber, photo } = this.state;
+        const {
+            name,
+            phoneNumber,
+            photo,
+            background,
+        } = this.state;
         return (
             <View
                 style={[defaultStyles.container, defaultStyles.noPadVertical]}
             >
                 <View style={defaultStyles.wrapper}>
-                    <View style={defaultStyles.imageWrapper}>
+                    <View style={[defaultStyles.imageWrapper, { backgroundColor: background }]}>
                         <ImageElement photo={photo} />
                     </View>
                     <View style={styles.metaWrapper}>
