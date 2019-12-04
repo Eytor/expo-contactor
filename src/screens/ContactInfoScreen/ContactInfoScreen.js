@@ -42,6 +42,7 @@ class ContactInfoScreen extends Component {
         });
     }
 
+    // check if contact has been edited and if so replace the contact in the list
     componentWillUnmount() {
         if (this.state.isEdited) {
             this.props.navigation.state.params.edit(
@@ -53,6 +54,15 @@ class ContactInfoScreen extends Component {
         }
     }
 
+    /**
+     * Function that saves the edited contact calls
+     * the service to replace the corresponding json file
+     *
+     * @param {string} name - new name of contact
+     * @param {number} phoneNumber - new phone number of contact
+     * @param {string} photo - new photo o contact
+     * @memberof ContactInfoScreen
+     */
     saveContact(name, phoneNumber, photo) {
         this.setState(
             {
