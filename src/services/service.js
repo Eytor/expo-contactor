@@ -1,5 +1,7 @@
 import * as FileSystem from 'expo-file-system';
 import * as Contacts from 'expo-contacts';
+import { Platform } from 'react-native';
+import { Linking } from 'expo';
 import { getRandomColor } from '../resources/resources';
 
 
@@ -102,4 +104,17 @@ export async function getPhonesContacts(firstAvailableId) {
             }
         }),
     );
+}
+
+/**
+ * Function to make a phone call:
+ * on ios starts calling immediately,
+ * on Android opens phone app with phone number
+ *
+ * @export
+ * @param {number} phoneNumber
+ */
+export function handleCall(phoneNumber) {
+    const url = Platform.OS === 'ios' ? `tel://${phoneNumber}` : `tel:${phoneNumber}`;
+    Linking.openURL(url);
 }
