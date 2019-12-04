@@ -23,6 +23,23 @@ export default StyleSheet.create({
         paddingLeft: 0,
         paddingRight: 0,
     },
+    filterContainer: {
+        width: '100%',
+        position: 'relative',
+        justifyContent: 'flex-start',
+
+    },
+    spyglass: {
+        position: 'absolute',
+        width: 15,
+        height: 15,
+        right: 0,
+        top: 18,
+        transform: [{ rotateY: '180deg' }],
+    },
+    spyglassIcon: {
+        color: Colors.gray,
+    },
     input: {
         padding: 10,
         paddingLeft: 0,

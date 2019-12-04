@@ -21,6 +21,6 @@ export default StyleSheet.create({
     itemName: {
         color: '#fff',
         fontSize: 16,
-        fontWeight: '500',
+        fontWeight: '300',
     },
 });
